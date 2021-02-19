@@ -1,0 +1,18 @@
+description = 'Booking API'
+jar.archiveBaseName.set('booking-api')
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project('infra')
+}
+
+springBoot {
+    mainClassName = 'com.hoteldemo.bookingapi.BookingApiApplication'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}

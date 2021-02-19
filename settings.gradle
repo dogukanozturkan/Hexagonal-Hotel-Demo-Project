@@ -1,1 +1,4 @@
 rootProject.name = 'hexagonal-hotel-demo'
+include ':hotel-api'
+include ':hotel-api:domain'
+include ':hotel-api:infra'

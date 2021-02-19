@@ -2,3 +2,7 @@ rootProject.name = 'hexagonal-hotel-demo'
 include ':hotel-api'
 include ':hotel-api:domain'
 include ':hotel-api:infra'
+
+include ':booking-api'
+include ':booking-api:domain'
+include ':booking-api:infra'

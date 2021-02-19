@@ -1,0 +1,18 @@
+description = 'Hotel API'
+jar.archiveBaseName.set('hotel-api')
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project('infra')
+}
+
+springBoot {
+    mainClassName = 'com.hoteldemo.hotelapi.HotelApiApplication'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}

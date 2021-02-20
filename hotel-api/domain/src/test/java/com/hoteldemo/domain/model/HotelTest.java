@@ -1,4 +1,4 @@
-package com.hoteldemo.hotelapi.hotel.model;
+package com.hoteldemo.domain.model;
 
 import org.junit.jupiter.api.Test;
 

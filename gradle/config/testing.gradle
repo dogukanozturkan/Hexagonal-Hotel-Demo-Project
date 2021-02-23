@@ -52,13 +52,10 @@ project.afterEvaluate({
     configure("test", [], ['functionalTest'])
 
     // ONLY UNIT TEST, CHANGE SET DETECTION SKIPPED
-    configure("unitTest", null, ['integrationTest', 'contractTest', 'stubTest', 'functionalTest'])
 
     // ONLY INTEGRATION TEST, CHANGE SET DETECTION SKIPPED
-    configure("integrationTest", ['integrationTest'], null)
 
     // ONLY CONTRACT TEST, CHANGE SET DETECTION SKIPPED
-    configure("contractTest", ['contractTest'], null)
 
     // ONLY STUB TEST, CHANGE SET DETECTION SKIPPED
     configure("stubTest", ['stubTest'], null)
@@ -96,11 +93,6 @@ if (!project.hasProperty('skipInfraSetup')) {
     }
 }
 
-if (project.tasks.findByName('generateContractTests')) {
-    contractTest.dependsOn generateContractTests
-    test.dependsOn generateContractTests
-    allTest.dependsOn generateContractTests
-}
 
 if (project.tasks.findByName('verifierStubsJar')) {
     stubTest.dependsOn verifierStubsJar

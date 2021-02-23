@@ -1,5 +1,8 @@
-rootProject.name = 'hexagonal-hotel-demo'
+rootProject.name = 'demo-hotel'
 include ':hotel-api'
 include ':hotel-api:infra'
 include ':hotel-api:domain'
 
+include ':reservation-api'
+include ':reservation-api:domain'
+include ':reservation-api:infra'

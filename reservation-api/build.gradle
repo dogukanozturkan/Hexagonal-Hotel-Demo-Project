@@ -1,5 +1,5 @@
-description = 'Hotel API'
-jar.archiveBaseName.set('hotel-api')
+description = 'Reservation API'
+jar.archiveBaseName.set('reservation-api')
 
 apply plugin: 'org.springframework.boot'
 

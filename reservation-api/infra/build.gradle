@@ -1,8 +1,12 @@
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
 dependencies {
     compile project.parent.project("domain")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    compile group: 'org.springframework.boot:spring-boot-starter-activemq:2.0.3.RELEASE', name: 'spring-boot-starter-activemq'
 
     compile group: 'javax.xml.bind', name: 'jaxb-api'
     compile group: 'com.sun.xml.bind', name: 'jaxb-impl'
@@ -23,5 +27,11 @@ dependencies {
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 
-    testCompile files("${project.rootDir}/hotel-api/infra/build/libs/infra-stubs.jar")
+    testCompile files("${project.rootDir}/reservation-api/infra/build/libs/infra-stubs.jar")
+
+    compile("org.springframework.boot:spring-boot-starter-activemq")
+    compile("org.apache.activemq:activemq-broker")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    // https://mvnrepository.com/artifact/org.springframework/spring-jms
+    implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
 }

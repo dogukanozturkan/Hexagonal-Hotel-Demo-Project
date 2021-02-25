@@ -1,15 +1,25 @@
 package com.demohotel.hotelapi.room.port;
 
-import com.demohotel.hotelapi.room.command.CloseRoom;
+import com.demohotel.hotelapi.common.Port;
 import com.demohotel.hotelapi.room.command.CreateRoom;
+import com.demohotel.hotelapi.room.command.FindRoom;
+import com.demohotel.hotelapi.room.command.RemoveRoom;
 import com.demohotel.hotelapi.room.command.UpdateRoom;
 import com.demohotel.hotelapi.room.model.Room;
 
+
+/**
+ * Port for managing {@link Room}.
+ */
+@Port
 public interface RoomPort {
 
-    Room create(CreateRoom createRoom);
+    String create(CreateRoom createRoom);
 
-    Room delete(CloseRoom closeRoom);
+    String delete(RemoveRoom removeRoom);
 
-    Room update(UpdateRoom createRoom);
+    String update(UpdateRoom createRoom);
+
+    Room find(FindRoom findRoom);
+
 }

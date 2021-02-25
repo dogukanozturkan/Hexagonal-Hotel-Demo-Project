@@ -1,5 +1,5 @@
 allprojects {
     apply plugin: 'nebula.lint'
-    gradleLint.rules = ['all-dependency','unused-dependency']
+    gradleLint.rules = ['all-dependency', 'unused-dependency']
     gradleLint.alwaysRun = false
 }

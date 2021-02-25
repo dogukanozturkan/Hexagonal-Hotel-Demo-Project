@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class CloseHotel {
 
-    private String hotelId;
+    private Long id;
 }

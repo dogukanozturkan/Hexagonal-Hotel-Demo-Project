@@ -1,6 +1,5 @@
 package com.demohotel.hotelapi.adapters.hotel.rest.dto.response;
 
-import com.demohotel.hotelapi.hotel.model.vo.HotelIdentifier;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,13 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HotelResponse {
 
-    private Long id;
-    private String name;
+    private String hotelId;
 
-    public static HotelResponse fromModel(HotelIdentifier hotelIdentifier) {
+    public static HotelResponse fromModel(String id) {
         return HotelResponse.builder()
-                .id(hotelIdentifier.getId())
-                .name(hotelIdentifier.getName())
+                .hotelId(id)
                 .build();
     }
 

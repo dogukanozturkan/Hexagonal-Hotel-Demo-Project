@@ -1,20 +1,18 @@
 package com.demohotel.hotelapi.adapters.hotel.rest.dto.request;
 
-import com.demohotel.hotelapi.adapters.hotel.rest.dto.*;
-import com.demohotel.hotelapi.common.model.Image;
+import com.demohotel.hotelapi.adapters.hotel.rest.dto.LocationDto;
+import com.demohotel.hotelapi.facility.model.Facility;
 import com.demohotel.hotelapi.hotel.command.CreateHotel;
-import com.demohotel.hotelapi.hotel.model.vo.Address;
-import com.demohotel.hotelapi.hotel.model.vo.Facility;
-import com.demohotel.hotelapi.hotel.model.vo.HotelType;
-import com.demohotel.hotelapi.hotel.model.vo.Translation;
+import com.demohotel.hotelapi.image.model.Image;
+import com.demohotel.hotelapi.translation.model.Translation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Data
@@ -25,8 +23,6 @@ public class CreateHotelRequest {
 
     @JsonProperty("name")
     public String name;
-    @JsonProperty("type")
-    public TypeDto type;
     @JsonProperty("description")
     public String description;
     @JsonProperty("address_line_1")
@@ -50,18 +46,20 @@ public class CreateHotelRequest {
     @JsonProperty("star_rating")
     public Integer starRating;
     @JsonProperty("images")
-    public List<ImageDto> images = null;
+    public List<Image> images = new ArrayList<>();
     @JsonProperty("translations")
-    public List<TranslationDto> translations = null;
+    public List<Translation> translations = new ArrayList<>();
     @JsonProperty("facilities")
-    public List<FacilityDto> facilities = null;
+    public List<Facility> facilities = new ArrayList<>();
 
     public CreateHotel toModel() {
         return CreateHotel.builder()
                 .name(name)
-                .hotelType(HotelType.builder().name(getType().getName()).build())
                 .description(description)
-                .address(Address.of(getAddressLine1(), getAddressLine2(), getLocation().latitude, getLocation().longitude))
+                .addressLine1(addressLine1)
+                .addressLine2(addressLine2)
+                .latitude(getLocation().latitude)
+                .longitude(getLocation().longitude)
                 .postCode(postcode)
                 .city(city)
                 .country(country)
@@ -69,27 +67,9 @@ public class CreateHotelRequest {
                 .email(email)
                 .currency(currency)
                 .starRating(starRating)
-                .images(getImages().stream().map(
-                        image -> Image.builder()
-                                .height(image.getHeight())
-                                .width(image.getWidth())
-                                .url(image.getUrl())
-                                .tag(image.getTag())
-                                .build())
-                        .collect(Collectors.toList()))
-                .translations(getTranslations().stream().map(
-                        translation -> Translation.builder()
-                                .locale(translation.getLocale())
-                                .description(translation.getDescription())
-                                .name(translation.getName())
-                                .build())
-                        .collect(Collectors.toList()))
-                .facilities(getFacilities().stream().map(
-                        facility -> Facility.builder()
-                                .category(facility.getCategory())
-                                .name(facility.getName())
-                                .build())
-                        .collect(Collectors.toList()))
+                .images(images)
+                .translations(translations)
+                .facilities(facilities)
                 .build();
     }
 }

@@ -1,11 +1,10 @@
 package com.demohotel.hotelapi.hotel.command;
 
-import com.demohotel.hotelapi.common.model.Image;
-import com.demohotel.hotelapi.hotel.model.vo.Address;
-import com.demohotel.hotelapi.hotel.model.vo.Facility;
-import com.demohotel.hotelapi.hotel.model.vo.HotelRate;
-import com.demohotel.hotelapi.hotel.model.vo.Translation;
+import com.demohotel.hotelapi.facility.model.Facility;
+import com.demohotel.hotelapi.image.model.Image;
+import com.demohotel.hotelapi.rate.model.Rate;
 import com.demohotel.hotelapi.room.model.Room;
+import com.demohotel.hotelapi.translation.model.Translation;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,18 +14,23 @@ import java.util.List;
 @Builder
 public class UpdateHotel {
 
+    private Long id;
     private String name;
-    private String description;
-    private Address address;
+    private String addressLine1;
+    private String addressLine2;
+    private Double latitude;
+    private Double longitude;
     private String postCode;
-    private String city;
+    private String description;
     private String country;
+    private String city;
     private String phoneNumber;
     private String email;
     private String currency;
+    private Integer starRating;
     private List<Image> images;
     private List<Facility> facilities;
     private List<Translation> translations;
     private List<Room> rooms;
-    private HotelRate rate;
+    private Rate rate;
 }

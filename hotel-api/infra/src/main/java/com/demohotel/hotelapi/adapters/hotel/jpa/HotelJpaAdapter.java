@@ -1,108 +1,83 @@
 package com.demohotel.hotelapi.adapters.hotel.jpa;
 
 import com.demohotel.hotelapi.adapters.hotel.jpa.entity.HotelEntity;
-import com.demohotel.hotelapi.adapters.hotel.jpa.entity.LocationEntity;
+import com.demohotel.hotelapi.adapters.hotel.jpa.entityold.LocationEntity;
 import com.demohotel.hotelapi.adapters.hotel.jpa.repository.HotelJpaRepository;
 import com.demohotel.hotelapi.hotel.command.CloseHotel;
 import com.demohotel.hotelapi.hotel.command.CreateHotel;
+import com.demohotel.hotelapi.hotel.command.FindHotel;
 import com.demohotel.hotelapi.hotel.command.UpdateHotel;
-import com.demohotel.hotelapi.hotel.model.vo.HotelIdentifier;
-import com.demohotel.hotelapi.hotel.model.vo.Status;
+import com.demohotel.hotelapi.hotel.model.Hotel;
 import com.demohotel.hotelapi.hotel.port.HotelPort;
-import com.demohotel.hotelapi.room.command.CloseRoom;
-import com.demohotel.hotelapi.room.command.CreateRoom;
-import com.demohotel.hotelapi.room.command.UpdateRoom;
-import com.demohotel.hotelapi.room.model.Room;
-import com.demohotel.hotelapi.room.port.RoomPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
+/**
+ * Adapter Implementation for managing {@link HotelEntity}.
+ */
 @Service
 @RequiredArgsConstructor
-public class HotelJpaAdapter implements HotelPort, RoomPort {
+public class HotelJpaAdapter implements HotelPort {
 
     private final HotelJpaRepository hotelJpaRepository;
 
     @Override
-    public HotelIdentifier create(CreateHotel createHotel) {
+    public String create(CreateHotel createHotel) {
 
         HotelEntity hotelEntity = new HotelEntity();
 
-        hotelEntity.setStatus(Status.ACTIVE);
+        //hotelEntity.setStatus(Status.ACTIVE);
         hotelEntity.setName(createHotel.getName());
         hotelEntity.setDescription(createHotel.getDescription());
-        hotelEntity.setAddressLine1(createHotel.getAddress().getAddressLine1());
-        hotelEntity.setAddressLine2(createHotel.getAddress().getAddressLine2());
-        hotelEntity.setPostcode(createHotel.getPostCode());
+        hotelEntity.setAddressLine1(createHotel.getAddressLine1());
+        hotelEntity.setAddressLine2(createHotel.getAddressLine2());
+        hotelEntity.setPostCode(createHotel.getPostCode());
         hotelEntity.setCity(createHotel.getCity());
         hotelEntity.setCountry(createHotel.getCountry());
 
         LocationEntity locationEntity = new LocationEntity();
-        locationEntity.setLatitude(createHotel.getAddress().getLatitude());
-        locationEntity.setLatitude(createHotel.getAddress().getLongitude());
+        locationEntity.setLatitude(createHotel.getLatitude());
+        locationEntity.setLongitude(createHotel.getLongitude());
 
-        //hotelEntity.setLocation(locationEntity);
         hotelEntity.setPhoneNumber(createHotel.getPhoneNumber());
         hotelEntity.setEmail(createHotel.getEmail());
         hotelEntity.setCurrency(createHotel.getCurrency());
-        hotelEntity.setStarRating(createHotel.getStarRating());
+        hotelEntity.setStarRating(createHotel.getStarRating().toString());
 
-        /*hotelEntity.setImages(createHotel.getImages().stream().map(
-                image -> ImageEntity.builder()
-                    .height(image.getHeight())
-                    .width(image.getWidth())
-                    .url(image.getUrl())
-                    .tag(image.getTag())
-                .build())
-                .collect(Collectors.toList()));
+        //hotelEntity.setCreatedAt(LocalDateTime.now());
 
-        hotelEntity.setTranslations(createHotel.getTranslations().stream().map(
-                translation -> TranslationEntity.builder()
-                        .locale(translation.getLocale())
-                        .description(translation.getDescription())
-                        .name(translation.getName())
-                .build())
-                .collect(Collectors.toList())
-                );
-
-        hotelEntity.setFacilities(createHotel.getFacilities().stream().map(
-                facility -> FacilityEntity.builder()
-                    .category(facility.getCategory())
-                    .name(facility.getName())
-                .build())
-                .collect(Collectors.toList())
-        );*/
-
-        hotelEntity.setCreatedAt(LocalDateTime.now());
-
-        return hotelJpaRepository.save(hotelEntity).toModel();
+        return hotelJpaRepository.save(hotelEntity).getId().toString();
     }
 
     @Override
-    public HotelIdentifier close(CloseHotel closeHotel) {
-        hotelJpaRepository.deleteById(closeHotel.getHotelId());
+    public String update(UpdateHotel updateHotel) {
+        return hotelJpaRepository.findById(updateHotel.getId()).map(hotelEntity -> {
+            return hotelJpaRepository.save(HotelEntity.builder()
+                    .name(updateHotel.getName())
+                    .addressLine1(updateHotel.getAddressLine1())
+                    .addressLine2(updateHotel.getAddressLine2())
+                    .postCode(updateHotel.getPostCode())
+                    .description(updateHotel.getDescription())
+                    .country(updateHotel.getCountry())
+                    .city(updateHotel.getCity())
+                    .phoneNumber(updateHotel.getName())
+                    .email(updateHotel.getEmail())
+                    .currency(updateHotel.getCurrency())
+                    .starRating(updateHotel.getStarRating().toString())
+                    .build());
+        }).get().getId().toString();
+    }
+
+    @Override
+    public Hotel find(FindHotel findHotel) {
         return null;
     }
 
     @Override
-    public HotelIdentifier update(UpdateHotel updateHotel) {
+    public String close(CloseHotel closeHotel) {
+        hotelJpaRepository.deleteById(closeHotel.getId());
         return null;
     }
 
-    @Override
-    public Room create(CreateRoom createRoom) {
-        return null;
-    }
 
-    @Override
-    public Room delete(CloseRoom closeRoom) {
-        return null;
-    }
-
-    @Override
-    public Room update(UpdateRoom createRoom) {
-        return null;
-    }
 }

@@ -1,4 +1,9 @@
 rootProject.name = 'demo-hotel'
+
+include ':bus'
+include ':gateway'
+include ':discovery'
+
 include ':hotel-api'
 include ':hotel-api:infra'
 include ':hotel-api:domain'
@@ -6,3 +11,6 @@ include ':hotel-api:domain'
 include ':reservation-api'
 include ':reservation-api:domain'
 include ':reservation-api:infra'
+include 'bus'
+include 'discovery'
+include 'application'

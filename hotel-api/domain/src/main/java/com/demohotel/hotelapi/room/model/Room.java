@@ -1,10 +1,8 @@
 package com.demohotel.hotelapi.room.model;
 
-import com.demohotel.hotelapi.common.Entity;
-import com.demohotel.hotelapi.common.ValueObject;
-import com.demohotel.hotelapi.common.model.Image;
 import com.demohotel.hotelapi.hotel.model.Hotel;
-import com.demohotel.hotelapi.hotel.model.vo.Bed;
+import com.demohotel.hotelapi.occupancy.model.Occupancy;
+import com.demohotel.hotelapi.type.model.RoomType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,20 +10,12 @@ import java.util.List;
 
 @Data
 @Builder
-@ValueObject
-public class Room implements Entity {
+public class Room {
 
-    Long number;
-    Long floor;
-    Hotel hotel;
-    RoomType roomType;
-    String description;
-    // Many-To-One Relationship.
-    List<Bed> beds;
-    List<Image> images;
-
-    @Override
-    public boolean isManaged() {
-        return false;
-    }
+    private String id;
+    private Hotel hotel;
+    private RoomType roomType;
+    private String description;
+    private String imageUrl;
+    private List<Occupancy> occupancies;
 }

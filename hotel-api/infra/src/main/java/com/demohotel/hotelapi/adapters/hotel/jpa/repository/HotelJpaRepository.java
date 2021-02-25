@@ -4,7 +4,10 @@ import com.demohotel.hotelapi.adapters.hotel.jpa.entity.HotelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface HotelJpaRepository extends JpaRepository<HotelEntity, String> {
 
+/**
+ * Spring Data repository for the HotelEntity entity.
+ */
+@Repository
+public interface HotelJpaRepository extends JpaRepository<HotelEntity, Long> {
 }

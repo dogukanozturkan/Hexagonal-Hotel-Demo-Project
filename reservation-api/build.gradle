@@ -1,0 +1,18 @@
+description = 'Reservation API'
+jar.archiveBaseName.set('reservation-api')
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project('infra')
+}
+
+springBoot {
+    mainClassName = 'com.demohotel.hotelapi.ReservationApiApplication'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}

@@ -1,0 +1,24 @@
+version: '3.6'
+
+services:
+
+  mysql:
+    image: mysql
+    container_name: hoteldemo_mysql
+    volumes:
+      - ./docs/ddl:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      LANG: C.UTF-8
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql_data:
+    external:
+      name: hoteldemo_mysql_data
+
+networks:
+  default:
+    external:
+      name: hoteldemo_network

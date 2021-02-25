@@ -1,0 +1,37 @@
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project.parent.project("domain")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    compile group: 'org.springframework.boot:spring-boot-starter-activemq:2.0.3.RELEASE', name: 'spring-boot-starter-activemq'
+
+    compile group: 'javax.xml.bind', name: 'jaxb-api'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core'
+    compile group: 'javax.activation', name: 'activation'
+    compile group: 'mysql', name: 'mysql-connector-java'
+    compile group: 'com.zaxxer', name: 'HikariCP'
+    compile group: 'commons-codec', name: 'commons-codec'
+
+    compile group: 'io.springfox', name: 'springfox-swagger2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui'
+
+    compileOnly("org.projectlombok:lombok")
+
+    annotationProcessor("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+
+    testCompile files("${project.rootDir}/reservation-api/infra/build/libs/infra-stubs.jar")
+
+    compile("org.springframework.boot:spring-boot-starter-activemq")
+    compile("org.apache.activemq:activemq-broker")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    // https://mvnrepository.com/artifact/org.springframework/spring-jms
+    implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
+}

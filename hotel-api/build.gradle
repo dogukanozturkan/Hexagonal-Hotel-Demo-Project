@@ -8,7 +8,7 @@ dependencies {
 }
 
 springBoot {
-    mainClassName = 'com.hexagonaldemo.hotelapi.HotelApiApplication'
+    mainClassName = 'com.demohotel.hotelapi.HotelApiApplication'
 }
 
 bootRun {

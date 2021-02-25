@@ -96,6 +96,8 @@ dependencyManagement {
         dependency group: 'com.sun.xml.bind', name: 'jaxb-core', version: rootProject.version_jaxbCore
         dependency group: 'com.sun.xml.bind', name: 'jaxb-osgi', version: rootProject.version_jaxbCore
 
+        //jms
+
         //javax
         dependency group: 'javax.xml.bind', name: 'jaxb-api', version: rootProject.version_jaxb
         dependency group: 'javax.activation', name: 'activation', version: rootProject.version_activation

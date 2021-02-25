@@ -9,6 +9,7 @@ import java.net.URI;
 
 @Configuration
 public class ActiveMqConfiguration {
+
     @Bean
     public BrokerService createBrokerService() throws Exception {
         BrokerService broker = new BrokerService();

@@ -4,13 +4,16 @@ mkdir -p ~/logs/demohotel-logs
 LOG_FOLDER=~/logs/demohotel-logs
 
 apis="
-,hotel-api:8080,
-,booking-api:8090,
+,gateway:8080,
+,bus:8081,
+,discovery:8082,
+,hotel-api:8090,
+,reservation-api:8091,
 "
 
 dbs="
 ,hotel-api:hotel-db,
-,booking-api:booking-db,
+,reservation-api:booking-db,
 "
 
 ################################

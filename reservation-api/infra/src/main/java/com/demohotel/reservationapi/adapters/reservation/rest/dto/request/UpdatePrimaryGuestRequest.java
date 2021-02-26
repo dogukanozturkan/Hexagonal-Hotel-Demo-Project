@@ -2,6 +2,7 @@ package com.demohotel.reservationapi.adapters.reservation.rest.dto.request;
 
 import com.demohotel.reservationapi.common.config.StringToLocalDateConverter;
 import com.demohotel.reservationapi.reservation.command.UpdatePrimaryGuest;
+import com.demohotel.reservationapi.reservation.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,8 +34,11 @@ public class UpdatePrimaryGuestRequest {
     @JsonProperty("email")
     private String email;
 
-    public UpdatePrimaryGuest toModel() {
+    public UpdatePrimaryGuest toModel(String reservationId) {
         return UpdatePrimaryGuest.builder()
+                .reservation(Reservation.builder()
+                        .id(reservationId)
+                        .build())
                 .name(name)
                 .lastName(lastName)
                 .title(title)

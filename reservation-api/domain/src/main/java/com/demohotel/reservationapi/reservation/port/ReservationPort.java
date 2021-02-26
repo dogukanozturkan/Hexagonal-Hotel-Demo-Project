@@ -13,8 +13,6 @@ public interface ReservationPort {
 
     String create(CreateReservation createReservation);
 
-    String update(UpdateReservation updateReservation);
-
     String updateTravelDates(UpdateTravelDates updateTravelDates);
 
     String updatePrimaryGuest(UpdatePrimaryGuest updatePrimaryGuest);

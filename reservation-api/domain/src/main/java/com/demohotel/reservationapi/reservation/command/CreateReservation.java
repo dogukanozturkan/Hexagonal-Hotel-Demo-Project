@@ -1,7 +1,7 @@
 package com.demohotel.reservationapi.reservation.command;
 
 import com.demohotel.reservationapi.reservation.model.vo.Customer;
-import com.demohotel.reservationapi.reservation.model.vo.Traveller;
+import com.demohotel.reservationapi.reservation.model.vo.Guest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -15,14 +15,15 @@ import java.util.List;
 public class CreateReservation {
 
     private String id;
-    private String roomId;
     private String hotelId;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String roomId;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private String currency;
     private String amount;
     private Integer adult;
     private Integer children;
+    private Integer infant;
     private Customer customer;
-    private List<Traveller> travellers;
+    private List<Guest> guests;
 }

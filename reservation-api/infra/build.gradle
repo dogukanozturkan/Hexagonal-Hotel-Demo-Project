@@ -1,12 +1,22 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+import org.springframework.cloud.contract.verifier.config.TestMode
+
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'spring-cloud-contract'
 
 dependencies {
     compile project.parent.project("domain")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
-    compile group: 'org.springframework.boot:spring-boot-starter-activemq:2.0.3.RELEASE', name: 'spring-boot-starter-activemq'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-activemq'
+
+    compile("org.springframework.boot:spring-boot-starter-activemq")
+    compile("org.apache.activemq:activemq-broker")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+
+    implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
 
     compile group: 'javax.xml.bind', name: 'jaxb-api'
     compile group: 'com.sun.xml.bind', name: 'jaxb-impl'
@@ -26,12 +36,23 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-stub-runner'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-verifier'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock'
+    testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone'
 
     testCompile files("${project.rootDir}/reservation-api/infra/build/libs/infra-stubs.jar")
 
-    compile("org.springframework.boot:spring-boot-starter-activemq")
-    compile("org.apache.activemq:activemq-broker")
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    // https://mvnrepository.com/artifact/org.springframework/spring-jms
-    implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
+}
+
+contracts {
+    generatedTestSourcesDir = project.file("src/test/java/")
+    basePackageForTests = 'com.demohotel.reservationapi.contract'
+    nameSuffixForTests = 'ContractTest'
+    testFramework = TestFramework.JUNIT5
+    testMode = TestMode.EXPLICIT
+
+    baseClassMappings {
+        baseClassMapping("reservation", "com.demohotel.reservationapi.contract.base.BaseReservationContractTest")
+    }
 }

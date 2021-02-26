@@ -1,7 +1,6 @@
 package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 
-import com.demohotel.reservationapi.reservation.model.vo.Customer;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.demohotel.reservationapi.reservation.model.vo.Guest;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
@@ -15,14 +14,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * A CustomerEntity.
+ * A GuestEntity.
  */
 @Data
 @Builder
-@Entity(name = "customer")
-@Table(name = "customer")
+@Entity
+@Table(name = "guest")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class CustomerEntity implements Serializable {
+public class GuestEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +46,7 @@ public class CustomerEntity implements Serializable {
     @Column(name = "birth_date", length = 128, nullable = true)
     private LocalDate birthDate;
 
-    @Column(name = "passport_no", unique = true)
+    @Column(name = "passport_no")
     private String passportNo;
 
     @NotNull
@@ -65,12 +64,11 @@ public class CustomerEntity implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "customers", allowSetters = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     private ReservationEntity reservation;
 
-    public Customer toModel() {
-        return Customer.builder()
+    public Guest toModel() {
+        return Guest.builder()
                 .name(name)
                 .lastName(lastName)
                 .title(title)
@@ -82,5 +80,4 @@ public class CustomerEntity implements Serializable {
                 .reservation(reservation.toModel())
                 .build();
     }
-
 }

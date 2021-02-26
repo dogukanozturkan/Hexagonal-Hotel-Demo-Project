@@ -7,12 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Guest {
 
+    private String id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("last_name")
@@ -29,6 +31,8 @@ public class Customer {
     private String phoneNumber;
     @JsonProperty("email")
     private String email;
+    @JsonProperty("is_primary")
+    private Boolean isPrimary;
     private Reservation reservation;
 
 }

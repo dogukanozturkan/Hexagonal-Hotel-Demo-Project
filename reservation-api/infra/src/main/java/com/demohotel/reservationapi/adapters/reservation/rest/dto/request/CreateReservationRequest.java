@@ -1,58 +1,61 @@
 package com.demohotel.reservationapi.adapters.reservation.rest.dto.request;
 
+import com.demohotel.reservationapi.adapters.reservation.rest.dto.PriceDto;
+import com.demohotel.reservationapi.common.config.StringToLocalDateConverter;
 import com.demohotel.reservationapi.reservation.command.CreateReservation;
 import com.demohotel.reservationapi.reservation.model.vo.Customer;
-import com.demohotel.reservationapi.reservation.model.vo.Traveller;
+import com.demohotel.reservationapi.reservation.model.vo.Guest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
+
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class CreateReservationRequest {
 
     @JsonProperty("hotel_id")
     private String hotelId;
-    @JsonProperty("room_name")
+    @JsonProperty("room_id")
     private String roomId;
-    @JsonProperty("start_date")
-    private LocalDate startDate;
-    @JsonProperty("end_date")
-    private LocalDate endDate;
-    @JsonProperty("currency")
-    private String currency;
-    @JsonProperty("amount")
-    private String amount;
+    @JsonProperty("check_in")
+    private String checkIn;
+    @JsonProperty("check_out")
+    private String checkOut;
+    @JsonProperty("price")
+    private PriceDto price;
     @JsonProperty("adult")
     private Integer adult;
     @JsonProperty("children")
     private Integer children;
+    @JsonProperty("infant")
+    private Integer infant;
     @JsonProperty("customer")
     private Customer customer;
-    @JsonProperty("travellers")
-    private List<Traveller> travellers;
+    @JsonProperty("guests")
+    private List<Guest> guests;
+
 
     public CreateReservation toModel() {
+        StringToLocalDateConverter converter = new StringToLocalDateConverter();
         return CreateReservation.builder()
                 .hotelId(hotelId)
                 .roomId(roomId)
-                .startDate(startDate)
-                .endDate(endDate)
-                .currency(currency)
-                .amount(amount)
+                .checkIn(converter.convert(checkIn))
+                .checkOut(converter.convert(checkOut))
+                .amount(price.getAmount())
+                .currency(price.getCurrency())
                 .adult(adult)
                 .children(children)
-                .travellers(travellers)
+                .infant(infant)
                 .customer(customer)
+                .guests(guests)
                 .build();
-
-
     }
+
+
 }

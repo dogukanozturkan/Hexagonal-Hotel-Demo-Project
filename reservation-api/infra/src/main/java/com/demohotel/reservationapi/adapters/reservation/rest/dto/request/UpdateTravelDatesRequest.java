@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class UpdateTravelDatesRequest {
 
     private static StringToLocalDateConverter localDateConverter;
+
     @JsonProperty("check_in")
     private String checkIn;
     @JsonProperty("check_out")
@@ -22,13 +23,12 @@ public class UpdateTravelDatesRequest {
     @JsonProperty("rate_plan_id")
     private String ratePlanId;
 
-    public UpdateTravelDates toModel(String hotelId, String roomId) {
+    public UpdateTravelDates toModel(String reservationId) {
         return UpdateTravelDates.builder()
                 .checkIn(localDateConverter.convert(checkIn))
                 .checkOut(localDateConverter.convert(checkOut))
                 .ratePlanId(ratePlanId)
-                .reservationId(hotelId)
-                .hotelId(roomId)
+                .reservationId(reservationId)
                 .build();
     }
 

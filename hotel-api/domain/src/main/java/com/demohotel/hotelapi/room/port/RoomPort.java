@@ -14,11 +14,11 @@ import com.demohotel.hotelapi.room.model.Room;
 @Port
 public interface RoomPort {
 
-    String create(CreateRoom createRoom);
+    Long create(CreateRoom createRoom);
 
-    String delete(RemoveRoom removeRoom);
+    Long delete(RemoveRoom removeRoom);
 
-    String update(UpdateRoom createRoom);
+    Long update(UpdateRoom createRoom);
 
     Room find(FindRoom findRoom);
 

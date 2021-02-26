@@ -1,18 +1,20 @@
 package com.demohotel.hotelapi.room.command;
 
-import com.demohotel.hotelapi.hotel.model.Hotel;
-import com.demohotel.hotelapi.type.model.RoomType;
+import com.demohotel.hotelapi.image.model.Image;
+import com.demohotel.hotelapi.translation.model.Translation;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Builder
 public class UpdateRoom {
 
-    private String id;
-    private String hotelId;
-    private Hotel hotel;
-    private RoomType roomType;
+    private String name;
     private String description;
-    private String imageUrl;
+    private Long hotelId;
+    private Long roomTypeId;
+    private List<Image> images;
+    private List<Translation> translations;
 }

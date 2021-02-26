@@ -21,17 +21,17 @@ public class RoomFacade {
     private final RoomPort roomPort;
 
 
-    public String create(CreateRoom createRoom) {
-        log.debug("Room Created under {}", createRoom.getHotel().getName());
+    public Long create(CreateRoom createRoom) {
+        log.debug("Room Created under {}", createRoom.getHotelId());
         return roomPort.create(createRoom);
     }
 
-    public String update(UpdateRoom updateRoom) {
-        log.debug("{}'s Room Updated. RoomId: {}.", updateRoom.getHotel().getName(), updateRoom.getId());
+    public Long update(UpdateRoom updateRoom) {
+        log.debug("{}'s Room Updated.", updateRoom.getHotelId());
         return roomPort.update(updateRoom);
     }
 
-    public String delete(RemoveRoom removeRoom) {
+    public Long delete(RemoveRoom removeRoom) {
         log.debug("{}'s room deleted", removeRoom.getHotelId());
         return roomPort.delete(removeRoom);
     }

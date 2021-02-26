@@ -7,5 +7,6 @@ import lombok.Data;
 @Builder
 public class RemoveRoomType {
 
-    private String roomTypeId;
+    private Long roomTypeId;
+    private Long hotelId;
 }

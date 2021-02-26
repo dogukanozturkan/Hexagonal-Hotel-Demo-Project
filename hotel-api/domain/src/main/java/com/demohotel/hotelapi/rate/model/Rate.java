@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 public class Rate {
 
-    private String id;
+    private Long id;
     private Hotel hotel;
     private Room room;
     private RoomType roomType;

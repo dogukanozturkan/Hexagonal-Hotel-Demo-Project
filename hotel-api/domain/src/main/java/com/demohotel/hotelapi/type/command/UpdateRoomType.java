@@ -9,10 +9,14 @@ public class UpdateRoomType {
 
     private String code;
     private String name;
+    private Long hotelId;
+    private Long roomTypeId;
     private String description;
     private Boolean freeBreakfast;
     private Boolean freeWifi;
     private Boolean freeParking;
-    private String adult;
-    private String children;
+    private Integer adult;
+    private Integer children;
+    private Integer infant;
+    private Integer bed;
 }

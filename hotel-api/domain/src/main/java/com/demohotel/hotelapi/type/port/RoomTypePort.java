@@ -13,11 +13,11 @@ import com.demohotel.hotelapi.type.model.RoomType;
 @Port
 public interface RoomTypePort {
 
-    String create(CreateRoomType createRoomType);
+    Long create(CreateRoomType createRoomType);
 
-    String update(UpdateRoomType createRoomType);
+    Long update(UpdateRoomType createRoomType);
 
-    String remove(RemoveRoomType removeRoomType);
+    Long remove(RemoveRoomType removeRoomType);
 
     RoomType find(FindRoomType findRoomType);
 }

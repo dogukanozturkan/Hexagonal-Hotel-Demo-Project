@@ -7,5 +7,6 @@ import lombok.Data;
 @Builder
 public class FindRoom {
 
-    private String roomId;
+    private Long roomId;
+    private Long hotelId;
 }

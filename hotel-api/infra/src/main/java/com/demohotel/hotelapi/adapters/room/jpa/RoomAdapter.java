@@ -21,17 +21,17 @@ public class RoomAdapter implements RoomPort {
     private final RoomJpaRepository roomJpaRepository;
 
     @Override
-    public String create(CreateRoom createRoom) {
+    public Long create(CreateRoom createRoom) {
         return null;
     }
 
     @Override
-    public String delete(RemoveRoom removeRoom) {
+    public Long delete(RemoveRoom removeRoom) {
         return null;
     }
 
     @Override
-    public String update(UpdateRoom createRoom) {
+    public Long update(UpdateRoom createRoom) {
         return null;
     }
 

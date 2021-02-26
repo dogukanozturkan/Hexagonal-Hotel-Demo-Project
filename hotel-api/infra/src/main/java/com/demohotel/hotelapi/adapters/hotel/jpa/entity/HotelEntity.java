@@ -1,6 +1,9 @@
 package com.demohotel.hotelapi.adapters.hotel.jpa.entity;
 
 import com.demohotel.hotelapi.adapters.room.jpa.entity.RoomEntity;
+import com.demohotel.hotelapi.hotel.command.CreateHotel;
+import com.demohotel.hotelapi.hotel.command.UpdateHotel;
+import com.demohotel.hotelapi.hotel.model.Hotel;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -10,15 +13,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A HotelEntity.
  */
+@Data
 @Builder(toBuilder = true)
-@Getter
-@Setter()
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
 @Entity
@@ -94,331 +96,71 @@ public class HotelEntity implements Serializable {
 
     @OneToMany(mappedBy = "hotel")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<RoomEntity> rooms = new HashSet<>();
+    private List<RoomEntity> rooms;
 
     @OneToMany(mappedBy = "hotel")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<HotelImageEntity> images = new HashSet<>();
+    private List<HotelImageEntity> images;
 
     @OneToMany(mappedBy = "hotel")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<FacilityEntity> facilities = new HashSet<>();
+    private List<FacilityEntity> facilities;
 
     @OneToMany(mappedBy = "hotel")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<HotelTranslationEntity> hotelTranslations = new HashSet<>();
+    private List<HotelTranslationEntity> hotelTranslations;
 
-    public Long getId() {
-        return id;
+    public static HotelEntity fromModel(CreateHotel createHotel) {
+        return HotelEntity.builder()
+                .name(createHotel.getName())
+                .addressLine1(createHotel.getAddressLine1())
+                .addressLine2(createHotel.getAddressLine2())
+                .postCode(createHotel.getPostCode())
+                .description(createHotel.getDescription())
+                .country(createHotel.getCountry())
+                .city(createHotel.getCity())
+                .phoneNumber(createHotel.getName())
+                .email(createHotel.getEmail())
+                .currency(createHotel.getCurrency())
+                .starRating(createHotel.getStarRating().toString())
+                .build();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public static HotelEntity fromModel(UpdateHotel updateHotel) {
+        return HotelEntity.builder()
+                .name(updateHotel.getName())
+                .addressLine1(updateHotel.getAddressLine1())
+                .addressLine2(updateHotel.getAddressLine2())
+                .postCode(updateHotel.getPostCode())
+                .description(updateHotel.getDescription())
+                .country(updateHotel.getCountry())
+                .city(updateHotel.getCity())
+                .phoneNumber(updateHotel.getName())
+                .email(updateHotel.getEmail())
+                .currency(updateHotel.getCurrency())
+                .starRating(updateHotel.getStarRating().toString())
+                .build();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public HotelEntity name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public HotelEntity description(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public HotelEntity addressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-        return this;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public HotelEntity addressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-        return this;
-    }
-
-    public String getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
-
-    public HotelEntity postCode(String postCode) {
-        this.postCode = postCode;
-        return this;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public HotelEntity city(String city) {
-        this.city = city;
-        return this;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public HotelEntity country(String country) {
-        this.country = country;
-        return this;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public HotelEntity phoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public HotelEntity email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public HotelEntity latitude(Double latitude) {
-        this.latitude = latitude;
-        return this;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public HotelEntity longitude(Double longitude) {
-        this.longitude = longitude;
-        return this;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public HotelEntity currency(String currency) {
-        this.currency = currency;
-        return this;
-    }
-
-    public String getStarRating() {
-        return starRating;
-    }
-
-    public void setStarRating(String starRating) {
-        this.starRating = starRating;
-    }
-
-    public HotelEntity starRating(String starRating) {
-        this.starRating = starRating;
-        return this;
-    }
-
-    public Set<RoomEntity> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(Set<RoomEntity> rooms) {
-        this.rooms = rooms;
-    }
-
-    public HotelEntity rooms(Set<RoomEntity> rooms) {
-        this.rooms = rooms;
-        return this;
-    }
-
-    public HotelEntity addRoom(RoomEntity room) {
-        this.rooms.add(room);
-        room.setHotel(this);
-        return this;
-    }
-
-    public HotelEntity removeRoom(RoomEntity room) {
-        this.rooms.remove(room);
-        room.setHotel(null);
-        return this;
-    }
-
-    public Set<HotelImageEntity> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<HotelImageEntity> images) {
-        this.images = images;
-    }
-
-    public HotelEntity hotelImages(Set<HotelImageEntity> hotelImages) {
-        this.images = hotelImages;
-        return this;
-    }
-
-    public HotelEntity addHotelImage(HotelImageEntity hotelImage) {
-        this.images.add(hotelImage);
-        hotelImage.setHotel(this);
-        return this;
-    }
-
-    public HotelEntity removeHotelImage(HotelImageEntity hotelImage) {
-        this.images.remove(hotelImage);
-        hotelImage.setHotel(null);
-        return this;
-    }
-
-    public Set<FacilityEntity> getFacilities() {
-        return facilities;
-    }
-
-    public void setFacilities(Set<FacilityEntity> facilities) {
-        this.facilities = facilities;
-    }
-
-    public HotelEntity facilities(Set<FacilityEntity> facilities) {
-        this.facilities = facilities;
-        return this;
-    }
-
-    public HotelEntity addFacility(FacilityEntity facility) {
-        this.facilities.add(facility);
-        facility.setHotel(this);
-        return this;
-    }
-
-    public HotelEntity removeFacility(FacilityEntity facility) {
-        this.facilities.remove(facility);
-        facility.setHotel(null);
-        return this;
-    }
-
-    public Set<HotelTranslationEntity> getHotelTranslations() {
-        return hotelTranslations;
-    }
-
-    public void setHotelTranslations(Set<HotelTranslationEntity> hotelTranslations) {
-        this.hotelTranslations = hotelTranslations;
-    }
-
-    public HotelEntity hotelTranslations(Set<HotelTranslationEntity> hotelTranslations) {
-        this.hotelTranslations = hotelTranslations;
-        return this;
-    }
-
-    public HotelEntity addHotelTranslation(HotelTranslationEntity hotelTranslation) {
-        this.hotelTranslations.add(hotelTranslation);
-        hotelTranslation.setHotel(this);
-        return this;
-    }
-
-    public HotelEntity removeHotelTranslation(HotelTranslationEntity hotelTranslation) {
-        this.hotelTranslations.remove(hotelTranslation);
-        hotelTranslation.setHotel(null);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof HotelEntity)) {
-            return false;
-        }
-        return id != null && id.equals(((HotelEntity) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "HotelEntity{" +
-                "id=" + getId() +
-                ", name='" + getName() + "'" +
-                ", description='" + getDescription() + "'" +
-                ", addressLine1='" + getAddressLine1() + "'" +
-                ", addressLine2='" + getAddressLine2() + "'" +
-                ", postCode='" + getPostCode() + "'" +
-                ", city='" + getCity() + "'" +
-                ", country='" + getCountry() + "'" +
-                ", phoneNumber='" + getPhoneNumber() + "'" +
-                ", email='" + getEmail() + "'" +
-                ", latitude=" + getLatitude() +
-                ", longitude=" + getLongitude() +
-                ", currency='" + getCurrency() + "'" +
-                ", starRating='" + getStarRating() + "'" +
-                "}";
+    public Hotel toModel() {
+        return Hotel.builder()
+                .id(id)
+                .name(name)
+                .addressLine1(addressLine1)
+                .addressLine2(addressLine2)
+                .postCode(postCode)
+                .city(city)
+                .country(country)
+                .phoneNumber(phoneNumber)
+                .email(email)
+                .latitude(latitude)
+                .longitude(longitude)
+                .currency(currency)
+                .starRating(starRating)
+                .rooms(rooms.stream().map(RoomEntity::toModel).collect(Collectors.toList()))
+                .images(images.stream().map(HotelImageEntity::toModel).collect(Collectors.toList()))
+                .facilities(facilities.stream().map(FacilityEntity::toModel).collect(Collectors.toList()))
+                .translations(hotelTranslations.stream().map(HotelTranslationEntity::toModel).collect(Collectors.toList()))
+                .build();
     }
 }

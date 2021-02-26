@@ -1,11 +1,12 @@
 package com.demohotel.reservationapi.reservation.model.vo;
 
-import com.demohotel.reservationapi.reservation.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -13,6 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer {
 
+    @JsonProperty("id")
+    private Long id;
+    @JsonProperty("reservation_id")
+    private Long reservationId;
     @JsonProperty("name")
     private String name;
     @JsonProperty("last_name")
@@ -22,13 +27,11 @@ public class Customer {
     @JsonProperty("passport_no")
     private String passportNo;
     @JsonProperty("birth_date")
-    private String birthDate;
+    private LocalDate birthDate;
     @JsonProperty("country")
     private String country;
     @JsonProperty("phone_number")
     private String phoneNumber;
     @JsonProperty("email")
     private String email;
-    private Reservation reservation;
-
 }

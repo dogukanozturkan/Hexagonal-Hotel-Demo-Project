@@ -17,15 +17,15 @@ public class FacilityFacade {
 
     private final FacilityPort facilityPort;
 
-    private String create(CreateFacility createFacility) {
+    private Long create(CreateFacility createFacility) {
         return facilityPort.create(createFacility);
     }
 
-    private String update(UpdateFacility updateFacility) {
+    private Long update(UpdateFacility updateFacility) {
         return facilityPort.update(updateFacility);
     }
 
-    private String remove(RemoveFacility removeFacility) {
+    private Long remove(RemoveFacility removeFacility) {
         return facilityPort.remove(removeFacility);
     }
 

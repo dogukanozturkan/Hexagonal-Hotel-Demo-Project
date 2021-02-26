@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @Builder
 public class RemoveOccupancy {
-    private String id;
-    private String hotelId;
-    ;
-    private String roomId;
-    private String reservationId;
+
+    private Long id;
+    private Long hotelId;
+    private Long roomId;
+    private Long reservationId;
 }

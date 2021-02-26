@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 public class UpdatePrimaryGuest {
 
-    private String id;
+    private Long id;
     private String name;
     private String lastName;
     private String title;

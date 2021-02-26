@@ -8,7 +8,7 @@ import lombok.NonNull;
 import java.util.UUID;
 
 @EqualsAndHashCode
-abstract public class AggregateIdentifier {
+public abstract class AggregateIdentifier {
 
     @Getter
     private final UUID identifier;

@@ -11,7 +11,7 @@ public class Occupancy {
 
     private Long id;
     private Long roomId;
+    private Long reservationId;
     private LocalDate checkIn;
     private LocalDate checkOut;
-    private String reservationId;
 }

@@ -4,7 +4,6 @@ import com.demohotel.hotelapi.common.event.DomainEvent;
 import com.demohotel.hotelapi.facility.model.Facility;
 import com.demohotel.hotelapi.hotel.model.Hotel;
 import com.demohotel.hotelapi.hotel.model.vo.Address;
-import com.demohotel.hotelapi.hotel.model.vo.HotelId;
 import com.demohotel.hotelapi.hotel.model.vo.HotelRate;
 import com.demohotel.hotelapi.hotel.model.vo.HotelType;
 import com.demohotel.hotelapi.image.model.Image;
@@ -24,7 +23,7 @@ import java.util.List;
 public class HotelWasCreated implements DomainEvent {
 
     Instant occurredOn;
-    HotelId hotelId;
+    Long hotelId;
     String name;
     HotelType hotelType;
     Address address;
@@ -39,9 +38,9 @@ public class HotelWasCreated implements DomainEvent {
     List<Room> rooms;
 
     public static HotelWasCreated from(Hotel hotel) {
-        return  HotelWasCreated.builder()
-                    .occurredOn(Instant.now())
-                    .hotelId(HotelId.from(hotel.getId()))
+        return HotelWasCreated.builder()
+                .occurredOn(Instant.now())
+                .hotelId(hotel.getId())
                 .address(Address.of(
                         hotel.getAddressLine1(),
                         hotel.getAddressLine1(),

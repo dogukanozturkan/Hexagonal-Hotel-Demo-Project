@@ -17,15 +17,15 @@ public class TranslationFacade {
 
     private final TranslationPort translationPort;
 
-    public String create(CreateTranslation createTranslation) {
+    public Long create(CreateTranslation createTranslation) {
         return translationPort.create(createTranslation);
     }
 
-    public String update(UpdateTranslation updateTranslation) {
+    public Long update(UpdateTranslation updateTranslation) {
         return translationPort.update(updateTranslation);
     }
 
-    public String remove(RemoveTranslation removeTranslation) {
+    public Long remove(RemoveTranslation removeTranslation) {
         return translationPort.remove(removeTranslation);
     }
 

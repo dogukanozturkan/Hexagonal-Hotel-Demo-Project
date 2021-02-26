@@ -11,15 +11,15 @@ import com.demohotel.reservationapi.reservation.model.Reservation;
 @Port
 public interface ReservationPort {
 
-    String create(CreateReservation createReservation);
+    Long create(CreateReservation createReservation);
 
-    String updateTravelDates(UpdateTravelDates updateTravelDates);
+    Long updateTravelDates(UpdateTravelDates updateTravelDates);
 
-    String updatePrimaryGuest(UpdatePrimaryGuest updatePrimaryGuest);
+    Long updatePrimaryGuest(UpdatePrimaryGuest updatePrimaryGuest);
 
-    String addGuest(AddGuest addGuest);
+    Long addGuest(AddGuest addGuest);
 
-    String cancel(CancelReservation cancelReservation);
+    Long cancel(CancelReservation cancelReservation);
 
     Reservation find(FindReservation findReservation);
 }

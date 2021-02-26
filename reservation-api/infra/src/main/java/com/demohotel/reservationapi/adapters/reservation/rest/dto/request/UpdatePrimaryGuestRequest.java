@@ -34,7 +34,7 @@ public class UpdatePrimaryGuestRequest {
     @JsonProperty("email")
     private String email;
 
-    public UpdatePrimaryGuest toModel(String reservationId) {
+    public UpdatePrimaryGuest toModel(Long reservationId) {
         return UpdatePrimaryGuest.builder()
                 .reservation(Reservation.builder()
                         .id(reservationId)

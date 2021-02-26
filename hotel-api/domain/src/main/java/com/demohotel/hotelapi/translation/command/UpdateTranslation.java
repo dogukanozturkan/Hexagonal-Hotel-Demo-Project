@@ -7,7 +7,8 @@ import lombok.Data;
 @Builder
 public class UpdateTranslation {
 
-    private String id;
+    private Long id;
+    private Long parentId;
     private String text;
     private String language;
     private String description;

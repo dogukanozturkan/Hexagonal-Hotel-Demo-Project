@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -42,11 +41,12 @@ public class UpdateHotelRequest {
     public String email;
     @JsonProperty("currency")
     public String currency;
-    public List<Image> images = new ArrayList<>();
+    @JsonProperty("images")
+    public List<Image> images;
     @JsonProperty("translations")
-    public List<Translation> translations = new ArrayList<>();
+    public List<Translation> translations;
     @JsonProperty("facilities")
-    public List<Facility> facilities = new ArrayList<>();
+    public List<Facility> facilities;
 
     public UpdateHotel toModel() {
         return UpdateHotel.builder()

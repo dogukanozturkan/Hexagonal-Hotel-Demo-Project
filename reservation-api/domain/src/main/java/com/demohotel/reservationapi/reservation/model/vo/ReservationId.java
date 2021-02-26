@@ -1,6 +1,5 @@
 package com.demohotel.reservationapi.reservation.model.vo;
 
-
 import com.demohotel.reservationapi.common.ValueObject;
 import com.demohotel.reservationapi.common.aggregate.AggregateIdentifier;
 

@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 
 @JsonPropertyOrder({
         "name",
-        "lastName",
+        "last_name",
         "title",
-        "passportNo",
-        "birthDate",
+        "passport_no",
+        "birth_date",
         "country",
-        "phoneNumber",
+        "phone_number",
         "email"
 })
 @Data
@@ -32,7 +32,7 @@ public class GuestDto {
     private String title;
     @JsonProperty("passport_no")
     private String passportNo;
-    @JsonProperty("birthDate")
+    @JsonProperty("birth_date")
     private String birthDate;
     @JsonProperty("country")
     private String country;

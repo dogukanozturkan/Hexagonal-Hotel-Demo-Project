@@ -29,7 +29,7 @@ public interface ReservationController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Response<ReservationResponse> createReservation(@RequestBody CreateReservationRequest reservation);
+    Response<ReservationResponse> createReservation(@RequestBody CreateReservationRequest reservation) throws URISyntaxException;
 
     /**
      * {@code PUT  /reservations/:reservation_id/primary-guest} : Updates an existing reservation.
@@ -42,9 +42,9 @@ public interface ReservationController {
      */
     @PutMapping("/reservations/{reservationId}/primary-guest")
     Response<ReservationResponse> updatePrimaryGuest(
-            @PathVariable String reservationId,
+            @PathVariable Long reservationId,
             @Valid @RequestBody UpdatePrimaryGuestRequest primaryGuest
-    );
+    ) throws URISyntaxException;
 
     /**
      * {@code PUT  /reservations/{reservationId}/travel-dates} : Updates primary guest an existing reservation.
@@ -57,9 +57,9 @@ public interface ReservationController {
      */
     @PutMapping("/reservations/{reservationId}/travel-dates")
     Response<ReservationResponse> updateTravelDates(
-            @PathVariable String reservationId,
+            @PathVariable Long reservationId,
             @RequestBody UpdateTravelDatesRequest travelDates
-    );
+    ) throws URISyntaxException;
 
     /**
      * {@code PUT  /reservations/:reservation_id}/add-guest} : Updates travel dates for an existing reservation.
@@ -72,9 +72,9 @@ public interface ReservationController {
      */
     @PutMapping("/reservations/{reservationId}/add-guest")
     Response<ReservationResponse> addGuest(
-            @PathVariable String reservationId,
+            @PathVariable Long reservationId,
             @RequestBody AddGuestRequest addGuest
-    );
+    ) throws URISyntaxException;
 
 
     /**
@@ -84,7 +84,7 @@ public interface ReservationController {
      * @return the {@link Response} with status {@code 200 (OK)} and with body the reservation, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/reservations/{reservationId}")
-    Response<GetReservationDetailsResponse> getReservation(@PathVariable String reservationId);
+    Response<GetReservationDetailsResponse> getReservation(@PathVariable Long reservationId) throws URISyntaxException;
 
     /**
      * {@code DELETE  /reservations/:reservationId} : delete the "id" reservation.
@@ -93,5 +93,5 @@ public interface ReservationController {
      * @return the {@link Response} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/reservations/{reservationId}")
-    Response<ReservationResponse> cancelReservation(@PathVariable String reservationId);
+    Response<ReservationResponse> cancelReservation(@PathVariable Long reservationId) throws URISyntaxException;
 }

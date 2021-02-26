@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class FindReservation {
 
-    private String reservationId;
+    private Long reservationId;
 }

@@ -13,11 +13,11 @@ import com.demohotel.hotelapi.rate.model.Rate;
 @Port
 public interface RatePort {
 
-    String create(CreateRate createRate);
+    Long create(CreateRate createRate);
 
-    String update(UpdateRate updateRate);
+    Long update(UpdateRate updateRate);
 
-    String remove(RemoveRate removeRate);
+    Long remove(RemoveRate removeRate);
 
     Rate find(FindRate removeRate);
 }

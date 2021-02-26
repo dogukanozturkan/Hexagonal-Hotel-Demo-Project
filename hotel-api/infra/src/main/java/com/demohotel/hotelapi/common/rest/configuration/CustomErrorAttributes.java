@@ -20,8 +20,8 @@ public class CustomErrorAttributes extends DefaultErrorAttributes {
         return new DefaultErrorAttributes() {
             @Override
             public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
-                Map<String, Object> errorAttributes = super.getErrorAttributes((WebRequest) webRequest, includeStackTrace);
-                Map<String, Object> newErrorAttributes = new LinkedHashMap<String, Object>();
+                Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, includeStackTrace);
+                Map<String, Object> newErrorAttributes = new LinkedHashMap<>();
                 Object errorMessage = webRequest.getAttribute(RequestDispatcher.ERROR_MESSAGE, RequestAttributes.SCOPE_REQUEST);
                 if (errorMessage != null) {
                     newErrorAttributes.put("response-type", "error");

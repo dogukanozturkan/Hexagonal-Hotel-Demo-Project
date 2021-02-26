@@ -10,11 +10,11 @@ import com.demohotel.hotelapi.image.model.Image;
 @Port
 public interface ImagePort {
 
-    String create(CreateImage createImage);
+    Long create(CreateImage createImage);
 
-    String update(UpdateImage createImage);
+    Long update(UpdateImage createImage);
 
-    String remove(RemoveImage createImage);
+    Long remove(RemoveImage createImage);
 
     Image find(FindImage createImage);
 }

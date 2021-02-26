@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class UpdateFacility {
 
-    private String id;
+    private Long id;
     private String code;
     private String name;
 }

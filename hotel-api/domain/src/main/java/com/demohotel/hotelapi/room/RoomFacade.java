@@ -20,7 +20,6 @@ public class RoomFacade {
 
     private final RoomPort roomPort;
 
-
     public Long create(CreateRoom createRoom) {
         log.debug("Room Created under {}", createRoom.getHotelId());
         return roomPort.create(createRoom);

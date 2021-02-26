@@ -10,11 +10,11 @@ import com.demohotel.hotelapi.translation.model.Translation;
 @Port
 public interface TranslationPort {
 
-    String create(CreateTranslation createTranslation);
+    Long create(CreateTranslation createTranslation);
 
-    String update(UpdateTranslation updateTranslation);
+    Long update(UpdateTranslation updateTranslation);
 
-    String remove(RemoveTranslation removeTranslation);
+    Long remove(RemoveTranslation removeTranslation);
 
     Translation find(FindTranslation findTranslation);
 }

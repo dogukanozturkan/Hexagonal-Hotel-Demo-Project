@@ -17,7 +17,7 @@ import java.util.List;
         "hotel_id",
         "room_id",
         "check_in",
-        "checkOut",
+        "check_out",
         "price",
         "adult",
         "children",
@@ -31,9 +31,9 @@ import java.util.List;
 public class GetReservationDetailsResponse {
 
     @JsonProperty("hotel_id")
-    private String hotelId;
+    private Long hotelId;
     @JsonProperty("room_id")
-    private String roomId;
+    private Long roomId;
     @JsonProperty("check_in")
     private String checkIn;
     @JsonProperty("check_out")

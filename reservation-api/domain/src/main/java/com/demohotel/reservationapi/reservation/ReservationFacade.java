@@ -17,21 +17,23 @@ public class ReservationFacade {
 
     private final ReservationPort reservationPort;
 
-    public String create(CreateReservation createReservation) {
+    public Long create(CreateReservation createReservation) {
         return reservationPort.create(createReservation);
     }
 
-    public String updateTravelDates(UpdateTravelDates updateTravelDates) {
+    public Long updateTravelDates(UpdateTravelDates updateTravelDates) {
         return reservationPort.updateTravelDates(updateTravelDates);
     }
-    public String updatePrimaryGuest(UpdatePrimaryGuest updatePrimaryGuest) {
+
+    public Long updatePrimaryGuest(UpdatePrimaryGuest updatePrimaryGuest) {
         return reservationPort.updatePrimaryGuest(updatePrimaryGuest);
     }
-    public String addGuest(AddGuest addGuest) {
+
+    public Long addGuest(AddGuest addGuest) {
         return reservationPort.addGuest(addGuest);
     }
 
-    public String cancel(CancelReservation cancelReservation) {
+    public Long cancel(CancelReservation cancelReservation) {
         return reservationPort.cancel(cancelReservation);
     }
 

@@ -12,9 +12,9 @@ import java.util.List;
 @Builder
 public class UpdateReservation {
 
-    private String id;
-    private String hotelId;
-    private String roomId;
+    private Long id;
+    private Long hotelId;
+    private Long roomId;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private String currency;

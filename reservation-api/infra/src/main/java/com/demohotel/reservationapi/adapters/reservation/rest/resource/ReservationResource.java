@@ -29,30 +29,30 @@ public class ReservationResource extends BaseController implements ReservationCo
     @Override
     public Response<ReservationResponse> createReservation(CreateReservationRequest reservation) {
 
-        String reservationId = reservationFacade.create(reservation.toModel());
+        Long reservationId = reservationFacade.create(reservation.toModel());
         return respond(ReservationResponse.fromModel(reservationId));
     }
 
     @Override
-    public Response<ReservationResponse> updatePrimaryGuest(String reservationId, @Valid UpdatePrimaryGuestRequest primaryGuest) {
-        String updatedId = reservationFacade.updatePrimaryGuest(primaryGuest.toModel(reservationId));
+    public Response<ReservationResponse> updatePrimaryGuest(Long reservationId, @Valid UpdatePrimaryGuestRequest primaryGuest) {
+        Long updatedId = reservationFacade.updatePrimaryGuest(primaryGuest.toModel(reservationId));
         return respond(ReservationResponse.fromModel(updatedId));
     }
 
     @Override
-    public Response<ReservationResponse> updateTravelDates(String reservationId, UpdateTravelDatesRequest travelDates) {
-        String updatedId = reservationFacade.updateTravelDates(travelDates.toModel(reservationId));
+    public Response<ReservationResponse> updateTravelDates(Long reservationId, UpdateTravelDatesRequest travelDates) {
+        Long updatedId = reservationFacade.updateTravelDates(travelDates.toModel(reservationId));
         return respond(ReservationResponse.fromModel(updatedId));
     }
 
     @Override
-    public Response<ReservationResponse> addGuest(String reservationId, AddGuestRequest addGuest) {
-        String updatedId = reservationFacade.addGuest(addGuest.toModel(reservationId));
+    public Response<ReservationResponse> addGuest(Long reservationId, AddGuestRequest addGuest) {
+        Long updatedId = reservationFacade.addGuest(AddGuestRequest.toModel(reservationId, addGuest));
         return respond(ReservationResponse.fromModel(updatedId));
     }
 
     @Override
-    public Response<GetReservationDetailsResponse> getReservation(String reservationId) {
+    public Response<GetReservationDetailsResponse> getReservation(Long reservationId) {
         Reservation reservation = reservationFacade.find(FindReservation.builder()
                 .reservationId(reservationId)
                 .build());
@@ -60,10 +60,9 @@ public class ReservationResource extends BaseController implements ReservationCo
     }
 
     @Override
-    public Response<ReservationResponse> cancelReservation(String reservationId) {
-        String canceledId = reservationFacade.cancel(CancelReservation.builder()
+    public Response<ReservationResponse> cancelReservation(Long reservationId) {
+        return respond(ReservationResponse.fromModel(reservationFacade.cancel(CancelReservation.builder()
                 .reservationId(reservationId)
-                .build());
-        return respond(ReservationResponse.fromModel(canceledId));
+                .build())));
     }
 }

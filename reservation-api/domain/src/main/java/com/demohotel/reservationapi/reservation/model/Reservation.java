@@ -12,9 +12,11 @@ import java.util.List;
 @Builder
 public class Reservation {
 
-    private String id;
-    private String hotelId;
-    private String roomId;
+    private Long id;
+    private Long hotelId;
+    private Long rateId;
+    private Long roomId;
+    private Long roomTypeId;
     private String currency;
     private String amount;
     private Integer adult;
@@ -24,5 +26,4 @@ public class Reservation {
     private LocalDate checkOut;
     private Customer customer;
     private List<Guest> guests;
-
 }

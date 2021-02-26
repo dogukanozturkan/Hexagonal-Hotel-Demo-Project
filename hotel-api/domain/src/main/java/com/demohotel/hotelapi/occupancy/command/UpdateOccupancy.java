@@ -9,10 +9,9 @@ import java.time.LocalDate;
 @Builder
 public class UpdateOccupancy {
 
-    private String hotelId;
-    ;
-    private String roomId;
-    private String reservationId;
+    private Long hotelId;
+    private Long roomId;
+    private Long reservationId;
     private LocalDate startDate;
     private LocalDate endDate;
 }

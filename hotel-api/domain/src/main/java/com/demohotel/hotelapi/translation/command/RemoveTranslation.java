@@ -7,5 +7,7 @@ import lombok.Data;
 @Builder
 public class RemoveTranslation {
 
-    private String id;
+    private Long id;
+    private Long parentId;
+
 }

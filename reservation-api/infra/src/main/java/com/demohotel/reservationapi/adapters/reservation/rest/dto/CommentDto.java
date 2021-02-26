@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @JsonPropertyOrder({
-        "first_name",
+        "name",
 })
 @Data
 @Builder
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentDto {
 
-    @JsonProperty("comment")
+    @JsonProperty("name")
     private String name;
 
 }

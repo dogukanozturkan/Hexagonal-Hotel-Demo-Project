@@ -1,6 +1,7 @@
 package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ import java.util.Map;
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "persistent_audit_event")
 public class PersistentAuditEvent implements Serializable {

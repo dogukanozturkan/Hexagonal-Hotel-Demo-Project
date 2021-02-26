@@ -3,16 +3,11 @@ package com.demohotel.reservationapi.adapters.reservation.rest.dto.request;
 import com.demohotel.reservationapi.common.config.StringToLocalDateConverter;
 import com.demohotel.reservationapi.reservation.command.AddGuest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class AddGuestRequest {
 
     private static StringToLocalDateConverter localDateConverter;
@@ -34,16 +29,17 @@ public class AddGuestRequest {
     @JsonProperty("email")
     private String email;
 
-    public AddGuest toModel(String reservationID) {
+    public static AddGuest toModel(Long reservationId, AddGuestRequest guest) {
         return AddGuest.builder()
-                .name(name)
-                .lastName(lastName)
-                .title(title)
-                .birthDate(localDateConverter.convert(birthDate))
-                .passportNo(passportNo)
-                .country(country)
-                .phoneNumber(phoneNumber)
-                .email(email)
+                .reservationId(reservationId)
+                .name(guest.getName())
+                .lastName(guest.getLastName())
+                .title(guest.getTitle())
+                .birthDate(localDateConverter.convert(guest.getBirthDate()))
+                .passportNo(guest.getBirthDate())
+                .country(guest.getCountry())
+                .phoneNumber(guest.getPhoneNumber())
+                .email(guest.email)
                 .build();
     }
 }

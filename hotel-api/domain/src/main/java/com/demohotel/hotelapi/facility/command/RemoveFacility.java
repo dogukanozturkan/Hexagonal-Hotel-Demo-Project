@@ -8,6 +8,6 @@ import lombok.Data;
 @Builder
 public class RemoveFacility {
 
-    private String id;
+    private Long id;
     private String code;
 }

@@ -17,15 +17,15 @@ public class ImageFacade {
 
     private final ImagePort imagePort;
 
-    public String create(CreateImage createImage) {
+    public Long create(CreateImage createImage) {
         return imagePort.create(createImage);
     }
 
-    public String update(UpdateImage updateImage) {
+    public Long update(UpdateImage updateImage) {
         return imagePort.update(updateImage);
     }
 
-    public String remove(RemoveImage removeImage) {
+    public Long remove(RemoveImage removeImage) {
         return imagePort.remove(removeImage);
     }
 

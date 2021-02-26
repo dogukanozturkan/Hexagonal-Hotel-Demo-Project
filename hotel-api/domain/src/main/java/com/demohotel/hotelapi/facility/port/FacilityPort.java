@@ -10,11 +10,11 @@ import com.demohotel.hotelapi.facility.model.Facility;
 @Port
 public interface FacilityPort {
 
-    String create(CreateFacility createFacility);
+    Long create(CreateFacility createFacility);
 
-    String update(UpdateFacility createFacility);
+    Long update(UpdateFacility createFacility);
 
-    String remove(RemoveFacility createFacility);
+    Long remove(RemoveFacility createFacility);
 
     Facility find(FindFacility createFacility);
 }

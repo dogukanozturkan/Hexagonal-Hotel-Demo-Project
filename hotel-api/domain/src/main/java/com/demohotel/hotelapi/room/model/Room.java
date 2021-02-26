@@ -15,18 +15,18 @@ public class Room {
 
     @JsonProperty("name")
     public String name;
-    @JsonProperty("description")
-    public String description;
     @JsonProperty("hotel_id")
     public Long hotelId;
     @JsonProperty("room_type_id")
     public Long roomTypeId;
+    @JsonProperty("description")
+    public String description;
+    @JsonProperty("id")
+    private Long id;
     @JsonProperty("images")
     public List<Image> images;
     @JsonProperty("translations")
     public List<Translation> translations;
-    @JsonProperty("id")
-    private Long id;
     @JsonProperty("images")
     private List<Occupancy> occupancies;
 }

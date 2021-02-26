@@ -9,11 +9,10 @@ import java.time.LocalDate;
 @Builder
 public class FindOccupancy {
 
-    private String id;
-    private String hotelId;
-    ;
-    private String roomId;
-    private String reservationId;
+    private Long id;
+    private Long hotelId;
+    private Long roomId;
+    private Long reservationId;
     private LocalDate startDate;
     private LocalDate endDate;
 }

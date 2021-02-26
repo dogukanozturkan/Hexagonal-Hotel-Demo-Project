@@ -52,8 +52,6 @@ public class JmsConfiguration {
 
         HashMap<String, Class<?>> idMapping = new HashMap<>();
 
-        // in:
-
         // out:
         idMapping.put(ReservationCreatedEvent.class.getSimpleName(), ReservationCreatedEvent.class);
 

@@ -7,9 +7,9 @@ import lombok.Data;
 @Builder
 public class RemoveRate {
 
-    private long id;
-    private String hotelId;
-    private String roomTypeId;
-    private String roomId;
+    private Long id;
+    private Long hotelId;
+    private Long roomTypeId;
+    private Long roomId;
     private String code;
 }

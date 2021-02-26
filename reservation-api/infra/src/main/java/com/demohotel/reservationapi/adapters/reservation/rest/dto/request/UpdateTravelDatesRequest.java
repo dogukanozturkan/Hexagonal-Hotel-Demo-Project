@@ -20,14 +20,12 @@ public class UpdateTravelDatesRequest {
     private String checkIn;
     @JsonProperty("check_out")
     private String checkOut;
-    @JsonProperty("rate_plan_id")
-    private String ratePlanId;
 
-    public UpdateTravelDates toModel(String reservationId) {
+
+    public UpdateTravelDates toModel(Long reservationId) {
         return UpdateTravelDates.builder()
                 .checkIn(localDateConverter.convert(checkIn))
                 .checkOut(localDateConverter.convert(checkOut))
-                .ratePlanId(ratePlanId)
                 .reservationId(reservationId)
                 .build();
     }

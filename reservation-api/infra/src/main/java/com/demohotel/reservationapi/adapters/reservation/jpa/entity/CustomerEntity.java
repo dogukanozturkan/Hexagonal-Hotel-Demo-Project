@@ -4,6 +4,7 @@ import com.demohotel.reservationapi.reservation.model.vo.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -19,6 +20,7 @@ import java.time.LocalDate;
  */
 @Data
 @Builder
+@NoArgsConstructor
 @Entity(name = "customer")
 @Table(name = "customer")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -41,10 +43,10 @@ public class CustomerEntity implements Serializable {
     private String lastName;
 
     @Size(min = 1, max = 128)
-    @Column(name = "title", length = 128, nullable = true)
+    @Column(name = "title", length = 128)
     private String title;
 
-    @Column(name = "birth_date", length = 128, nullable = true)
+    @Column(name = "birth_date", length = 128)
     private LocalDate birthDate;
 
     @Column(name = "passport_no", unique = true)
@@ -56,7 +58,7 @@ public class CustomerEntity implements Serializable {
     private String country;
 
     @NotNull
-    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s/0-9]*$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
@@ -69,17 +71,30 @@ public class CustomerEntity implements Serializable {
     @JsonIgnoreProperties(value = "customers", allowSetters = true)
     private ReservationEntity reservation;
 
+    public static CustomerEntity fromModel(Customer customer) {
+        return CustomerEntity.builder()
+                .name(customer.getName())
+                .lastName(customer.getLastName())
+                .title(customer.getTitle())
+                .passportNo(customer.getPassportNo())
+                .birthDate(customer.getBirthDate())
+                .country(customer.getCountry())
+                .phoneNumber(customer.getPhoneNumber())
+                .email(customer.getEmail())
+                .build();
+    }
+
     public Customer toModel() {
         return Customer.builder()
                 .name(name)
                 .lastName(lastName)
                 .title(title)
                 .passportNo(passportNo)
-                .birthDate(birthDate.toString())
+                .birthDate(birthDate)
                 .country(country)
                 .phoneNumber(phoneNumber)
                 .email(email)
-                .reservation(reservation.toModel())
+                .reservationId(reservation.getId())
                 .build();
     }
 

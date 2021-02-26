@@ -3,6 +3,7 @@ package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 import com.demohotel.reservationapi.reservation.model.vo.Guest;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -18,6 +19,7 @@ import java.time.LocalDate;
  */
 @Data
 @Builder
+@NoArgsConstructor
 @Entity
 @Table(name = "guest")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -55,7 +57,7 @@ public class GuestEntity implements Serializable {
     private String country;
 
     @NotNull
-    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s/0-9]*$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
@@ -64,8 +66,25 @@ public class GuestEntity implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "is_primary")
+    private Boolean isPrimary;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private ReservationEntity reservation;
+
+    public static GuestEntity fromModel(Guest guest) {
+        return GuestEntity.builder()
+                .name(guest.getName())
+                .lastName(guest.getLastName())
+                .title(guest.getTitle())
+                .passportNo(guest.getPassportNo())
+                .birthDate(guest.getBirthDate())
+                .country(guest.getCountry())
+                .phoneNumber(guest.getPhoneNumber())
+                .email(guest.getEmail())
+                .isPrimary(guest.getIsPrimary())
+                .build();
+    }
 
     public Guest toModel() {
         return Guest.builder()
@@ -73,11 +92,12 @@ public class GuestEntity implements Serializable {
                 .lastName(lastName)
                 .title(title)
                 .passportNo(passportNo)
-                .birthDate(birthDate.toString())
+                .birthDate(birthDate)
                 .country(country)
                 .phoneNumber(phoneNumber)
                 .email(email)
-                .reservation(reservation.toModel())
+                .isPrimary(isPrimary)
+                .reservationId(reservation.getId())
                 .build();
     }
 }

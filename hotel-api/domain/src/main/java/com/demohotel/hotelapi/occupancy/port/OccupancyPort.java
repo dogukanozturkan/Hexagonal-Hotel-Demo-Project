@@ -10,11 +10,11 @@ import com.demohotel.hotelapi.occupancy.model.Occupancy;
 @Port
 public interface OccupancyPort {
 
-    String create(CreateOccupancy createOccupancy);
+    Long create(CreateOccupancy createOccupancy);
 
-    String update(UpdateOccupancy createOccupancy);
+    Long update(UpdateOccupancy createOccupancy);
 
-    String remove(RemoveOccupancy createOccupancy);
+    Long remove(RemoveOccupancy createOccupancy);
 
     Occupancy find(FindOccupancy createOccupancy);
 }

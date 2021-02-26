@@ -8,9 +8,9 @@ import lombok.Data;
 public class RoomType {
 
     private Long id;
+    private Long hotelId;
     private String code;
     private String name;
-    private Long hotelId;
     private String description;
     private Boolean freeBreakfast;
     private Boolean freeWifi;

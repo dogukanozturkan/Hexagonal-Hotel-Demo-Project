@@ -18,15 +18,15 @@ public class OccupancyFacade {
 
     private OccupancyPort occupancyPort;
 
-    public String create(CreateOccupancy createOccupancy) {
+    public Long create(CreateOccupancy createOccupancy) {
         return occupancyPort.create(createOccupancy);
     }
 
-    public String update(UpdateOccupancy updateOccupancy) {
+    public Long update(UpdateOccupancy updateOccupancy) {
         return occupancyPort.update(updateOccupancy);
     }
 
-    public String remove(RemoveOccupancy removeOccupancy) {
+    public Long remove(RemoveOccupancy removeOccupancy) {
         return occupancyPort.remove(removeOccupancy);
     }
 

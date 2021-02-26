@@ -7,8 +7,6 @@ import lombok.Data;
 @Builder
 public class FindImage {
 
-    private String imageId;
-    private String roomId;
-    private String hotelId;
-
+    private Long imageId;
+    private Long parentId;
 }

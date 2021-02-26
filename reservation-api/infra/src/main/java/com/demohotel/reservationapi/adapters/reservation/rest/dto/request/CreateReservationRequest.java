@@ -19,9 +19,9 @@ import java.util.List;
 public class CreateReservationRequest {
 
     @JsonProperty("hotel_id")
-    private String hotelId;
+    private Long hotelId;
     @JsonProperty("room_id")
-    private String roomId;
+    private Long roomId;
     @JsonProperty("check_in")
     private String checkIn;
     @JsonProperty("check_out")

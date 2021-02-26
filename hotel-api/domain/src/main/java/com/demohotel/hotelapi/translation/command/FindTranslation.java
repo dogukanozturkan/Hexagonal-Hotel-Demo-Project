@@ -7,5 +7,7 @@ import lombok.Data;
 @Builder
 public class FindTranslation {
 
-    private String id;
+    private Long id;
+    private Long parentId;
+
 }

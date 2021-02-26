@@ -1,9 +1,7 @@
 package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 
 import com.demohotel.reservationapi.reservation.model.vo.Guest;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -20,6 +18,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "guest")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

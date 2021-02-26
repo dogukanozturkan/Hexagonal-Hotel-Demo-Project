@@ -40,4 +40,4 @@ spring:
     port: 6379
     password: redisPassword
 server:
-  port: 8093
+  port: 8094

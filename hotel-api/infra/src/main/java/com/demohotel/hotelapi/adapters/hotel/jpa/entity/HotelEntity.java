@@ -69,7 +69,7 @@ public class HotelEntity implements Serializable {
     private String country;
 
     @NotNull
-    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s/0-9]*$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
@@ -157,10 +157,18 @@ public class HotelEntity implements Serializable {
                 .longitude(longitude)
                 .currency(currency)
                 .starRating(starRating)
-                .rooms(rooms.stream().map(RoomEntity::toModel).collect(Collectors.toList()))
-                .images(images.stream().map(HotelImageEntity::toModel).collect(Collectors.toList()))
-                .facilities(facilities.stream().map(FacilityEntity::toModel).collect(Collectors.toList()))
-                .translations(hotelTranslations.stream().map(HotelTranslationEntity::toModel).collect(Collectors.toList()))
+                .rooms(rooms.stream()
+                        .map(RoomEntity::toModel)
+                        .collect(Collectors.toList()))
+                .images(images.stream()
+                        .map(HotelImageEntity::toModel)
+                        .collect(Collectors.toList()))
+                .facilities(facilities.stream()
+                        .map(FacilityEntity::toModel)
+                        .collect(Collectors.toList()))
+                .translations(hotelTranslations.stream()
+                        .map(HotelTranslationEntity::toModel)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

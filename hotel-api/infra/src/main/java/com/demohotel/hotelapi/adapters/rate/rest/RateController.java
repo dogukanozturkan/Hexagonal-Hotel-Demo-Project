@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URISyntaxException;
 
-
 /**
  * REST controller for managing {@link RateEntity}.
  */
@@ -29,8 +28,10 @@ public interface RateController {
      */
     @PostMapping("/{hotelId}/rate-plans")
     @ResponseStatus(HttpStatus.CREATED)
-    Response<RatePlanResponse> addRate(@PathVariable String hotelId,
-                                       @Valid @RequestBody CreateRatePlanRequest ratePlanRequest) throws URISyntaxException;
+    Response<RatePlanResponse> addRate(
+            @PathVariable String hotelId,
+            @Valid @RequestBody CreateRatePlanRequest ratePlanRequest
+    ) throws URISyntaxException;
 
     /**
      * {@code PUT  /:id/rate-plans/:rate-plan-id} : Updates an existing rate.
@@ -44,8 +45,11 @@ public interface RateController {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{hotelId}/rate-plans/{ratePlanId}")
-    Response<RatePlanResponse> updateRate(@PathVariable String hotelId, @PathVariable String ratePlanId,
-                                          @Valid @RequestBody UpdateHotelRequest updateHotelRequest) throws URISyntaxException;
+    Response<RatePlanResponse> updateRate(
+            @PathVariable String hotelId,
+            @PathVariable String ratePlanId,
+            @Valid @RequestBody UpdateHotelRequest updateHotelRequest
+    ) throws URISyntaxException;
 
 
     /**

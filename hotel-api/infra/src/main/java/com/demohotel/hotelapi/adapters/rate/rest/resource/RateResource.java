@@ -25,14 +25,19 @@ public class RateResource extends BaseController implements RateController {
     private final RoomFacade roomFacade;
 
     @Override
-    public Response<RatePlanResponse> addRate(String hotelId, @Valid CreateRatePlanRequest ratePlanRequest)
-            throws URISyntaxException {
+    public Response<RatePlanResponse> addRate(
+            String hotelId,
+            @Valid CreateRatePlanRequest ratePlanRequest
+    ) throws URISyntaxException {
         return null;
     }
 
     @Override
-    public Response<RatePlanResponse> updateRate(String hotelId, String ratePlanId,
-                                                 @Valid UpdateHotelRequest updateHotelRequest) throws URISyntaxException {
+    public Response<RatePlanResponse> updateRate(
+            String hotelId,
+            String ratePlanId,
+            @Valid UpdateHotelRequest updateHotelRequest
+    ) throws URISyntaxException {
         return null;
     }
 

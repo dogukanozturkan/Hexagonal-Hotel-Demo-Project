@@ -20,15 +20,15 @@ public class HotelFacade {
 
     private final HotelPort hotelPort;
 
-    public String create(CreateHotel createHotel) {
+    public Long create(CreateHotel createHotel) {
         return hotelPort.create(createHotel);
     }
 
-    public String update(UpdateHotel updateHotel) {
+    public Long update(UpdateHotel updateHotel) {
         return hotelPort.update(updateHotel);
     }
 
-    public String close(CloseHotel closeHotel) {
+    public Long close(CloseHotel closeHotel) {
         return hotelPort.close(closeHotel);
     }
 

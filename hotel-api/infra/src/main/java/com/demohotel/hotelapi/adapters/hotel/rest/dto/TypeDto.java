@@ -18,5 +18,4 @@ public class TypeDto {
 
     @JsonProperty("name")
     public String name;
-
 }

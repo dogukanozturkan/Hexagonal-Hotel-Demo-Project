@@ -27,5 +27,4 @@ public class ImageDto {
     public String width;
     @JsonProperty("height")
     public String height;
-
 }

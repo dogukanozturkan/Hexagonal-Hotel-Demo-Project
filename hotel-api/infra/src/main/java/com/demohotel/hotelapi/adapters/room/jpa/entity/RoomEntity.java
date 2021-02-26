@@ -5,7 +5,7 @@ import com.demohotel.hotelapi.adapters.hotel.jpa.entity.HotelEntity;
 import com.demohotel.hotelapi.adapters.type.jpa.entity.RoomTypeEntity;
 import com.demohotel.hotelapi.room.model.Room;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -20,6 +20,9 @@ import java.util.stream.Collectors;
  * A RoomEntity.
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "room")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

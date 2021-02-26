@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -23,8 +22,11 @@ public class AvailableHotelResponse {
     private List<RateEntity> ratePlans;
     private List<RoomEntity> rooms;
 
-    public static AvailableHotelResponse fromModel(List<AvailabilityDto> availability, List<HotelEntity> hotels,
-                                                   List<RateEntity> ratePlans, List<RoomEntity> rooms) {
+    public static AvailableHotelResponse fromModel(
+            List<AvailabilityDto> availability,
+            List<HotelEntity> hotels,
+            List<RateEntity> ratePlans,
+            List<RoomEntity> rooms) {
         return AvailableHotelResponse.builder()
                 .availability(availability)
                 .hotels(hotels)

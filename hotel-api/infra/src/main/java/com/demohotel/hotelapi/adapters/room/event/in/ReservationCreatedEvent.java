@@ -8,14 +8,14 @@ import java.time.LocalDate;
 
 public class ReservationCreatedEvent implements Event {
 
-    private final String reservationId;
-    private final String hotelId;
-    private final String roomId;
+    private final Long reservationId;
+    private final Long hotelId;
+    private final Long roomId;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
     @JsonCreator
-    public ReservationCreatedEvent(String reservationId, String hotelId, String roomId, LocalDate startDate, LocalDate endDate) {
+    public ReservationCreatedEvent(Long reservationId, Long hotelId, Long roomId, LocalDate startDate, LocalDate endDate) {
         this.reservationId = reservationId;
         this.hotelId = hotelId;
         this.roomId = roomId;

@@ -20,15 +20,15 @@ public class RateFacade {
 
     private final RatePort ratePort;
 
-    public String create(CreateRate createRate) {
+    public Long create(CreateRate createRate) {
         return ratePort.create(createRate);
     }
 
-    public String update(UpdateRate updateRate) {
+    public Long update(UpdateRate updateRate) {
         return ratePort.update(updateRate);
     }
 
-    public String remove(RemoveRate removeRate) {
+    public Long remove(RemoveRate removeRate) {
         return ratePort.remove(removeRate);
     }
 

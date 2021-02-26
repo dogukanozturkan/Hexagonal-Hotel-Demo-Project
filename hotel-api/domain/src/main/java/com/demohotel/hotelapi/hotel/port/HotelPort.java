@@ -20,7 +20,7 @@ public interface HotelPort {
      * @param createHotel the domain to create.
      * @return the persisted hotelId.
      */
-    String create(CreateHotel createHotel);
+    Long create(CreateHotel createHotel);
 
     /**
      * Update a hotel.
@@ -28,14 +28,14 @@ public interface HotelPort {
      * @param updateHotel the domain to save.
      * @return the persisted hotelId.
      */
-    String update(UpdateHotel updateHotel);
+    Long update(UpdateHotel updateHotel);
 
     /**
      * Close the hotel by id.
      *
      * @param removeHotel includes id of the entity.
      */
-    String close(CloseHotel removeHotel);
+    Long close(CloseHotel removeHotel);
 
     /**
      * Get one hotel by id.

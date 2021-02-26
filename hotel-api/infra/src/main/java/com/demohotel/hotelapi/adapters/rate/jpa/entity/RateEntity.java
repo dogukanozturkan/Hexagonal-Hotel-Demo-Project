@@ -2,8 +2,7 @@ package com.demohotel.hotelapi.adapters.rate.jpa.entity;
 
 import com.demohotel.hotelapi.adapters.type.jpa.entity.RoomTypeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -18,6 +17,8 @@ import java.math.BigDecimal;
  */
 @Data
 @Builder
+@AllArgsConstructor(access = AccessLevel.MODULE)
+@NoArgsConstructor
 @Entity
 @Table(name = "rate")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

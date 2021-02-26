@@ -1,8 +1,7 @@
 package com.demohotel.hotelapi.adapters.type.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -14,6 +13,8 @@ import java.io.Serializable;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "capacity")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -34,5 +35,4 @@ public class CapacityEntity implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "capacities", allowSetters = true)
     private RoomTypeEntity roomType;
-
 }

@@ -3,9 +3,7 @@ package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 import com.demohotel.reservationapi.common.config.StringToLocalDateConverter;
 import com.demohotel.reservationapi.reservation.command.CreateReservation;
 import com.demohotel.reservationapi.reservation.model.Reservation;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -21,6 +19,7 @@ import java.util.stream.Collectors;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity(name = "reservation")
 @Table(name = "reservation")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

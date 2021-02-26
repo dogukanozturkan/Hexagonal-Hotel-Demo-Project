@@ -10,13 +10,11 @@ import com.demohotel.hotelapi.common.rest.BaseController;
 import com.demohotel.hotelapi.common.rest.Response;
 import com.demohotel.hotelapi.hotel.HotelFacade;
 import com.demohotel.hotelapi.hotel.command.CloseHotel;
-import com.demohotel.hotelapi.room.RoomFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-
 
 @Slf4j
 @RestController
@@ -24,7 +22,6 @@ import javax.validation.Valid;
 public class HotelResource extends BaseController implements HotelController {
 
     private final HotelFacade hotelFacade;
-    private final RoomFacade roomFacade;
 
     @Override
     public Response<HotelResponse> addHotel(@Valid CreateHotelRequest createHotelRequest) {
@@ -32,32 +29,43 @@ public class HotelResource extends BaseController implements HotelController {
     }
 
     @Override
-    public Response<HotelResponse> updateHotel(@Valid String hotelId, UpdateHotelRequest updateHotelRequest) {
+    public Response<HotelResponse> updateHotel(@Valid Long hotelId, UpdateHotelRequest updateHotelRequest) {
         return respond(HotelResponse.fromModel(hotelFacade.update(updateHotelRequest.toModel())));
     }
 
     @Override
-    public Response<HotelResponse> getHotelById(String hotelId) {
+    public Response<HotelResponse> getHotelById(Long hotelId) {
         return null;
     }
 
     @Override
-    public Response<HotelResponse> closeHotel(@Valid String hotelId) {
-        return respond(HotelResponse.fromModel(hotelFacade.close(CloseHotel.builder()
-                .id(Long.getLong(hotelId))
-                .build())));
+    public Response<HotelResponse> closeHotel(@Valid Long hotelId) {
+        return respond(HotelResponse.fromModel(
+                hotelFacade.close(CloseHotel.builder()
+                        .id(hotelId)
+                        .build())));
     }
 
     @Override
-    public Response<AvailableHotelResponse> findAvailability(Integer adults, String checkIn, String checkOut,
-                                                             @Valid String hotelId) {
+    public Response<AvailableHotelResponse> findAvailability(
+            Integer adults,
+            Integer children,
+            Integer infant,
+            String checkIn,
+            String checkOut,
+            @Valid Long hotelId) {
         return null;
     }
 
     @Override
-    public Response<HotelAvailabilityResponse> getHotelAvailability(String city, Integer adults, String checkIn, String checkOut,
-                                                                    @Valid String hotelId) {
+    public Response<HotelAvailabilityResponse> getHotelAvailability(
+            String city,
+            Integer adults,
+            Integer children,
+            Integer infant,
+            String checkIn,
+            String checkOut,
+            @Valid Long hotelId) {
         return null;
     }
-
 }

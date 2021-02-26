@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HotelResponse {
 
-    private String hotelId;
+    private Long hotelId;
 
-    public static HotelResponse fromModel(String id) {
+    public static HotelResponse fromModel(Long id) {
         return HotelResponse.builder()
                 .hotelId(id)
                 .build();

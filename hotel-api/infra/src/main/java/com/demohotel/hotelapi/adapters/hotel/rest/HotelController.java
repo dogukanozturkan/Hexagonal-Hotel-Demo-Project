@@ -41,8 +41,10 @@ public interface HotelController {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{hotelId}")
-    Response<HotelResponse> updateHotel(@PathVariable String hotelId,
-                                        @Valid @RequestBody UpdateHotelRequest updateHotelRequest) throws URISyntaxException;
+    Response<HotelResponse> updateHotel(
+            @PathVariable Long hotelId,
+            @Valid @RequestBody UpdateHotelRequest updateHotelRequest
+    ) throws URISyntaxException;
 
 
     /**
@@ -52,7 +54,7 @@ public interface HotelController {
      * @return the {@link Response} with status {@code 200 (OK)} and with body the hotel, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{hotelId}")
-    Response<HotelResponse> getHotelById(@PathVariable String hotelId);
+    Response<HotelResponse> getHotelById(@PathVariable Long hotelId);
 
 
     /**
@@ -62,41 +64,51 @@ public interface HotelController {
      * @return the {@link Response} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/{hotelId}")
-    Response<HotelResponse> closeHotel(@Valid @PathVariable String hotelId);
+    Response<HotelResponse> closeHotel(@Valid @PathVariable Long hotelId);
 
 
     /**
      * {@code GET  /hotels/:id/availability} : get the "hotelId" hotel.
      *
-     * @param hotelId the id of the hotel to retrieve availability.
-     * @param adults  the number of adults in the room
-     * @param adults  the number of children in the room
-     * @param adults  the date of check in using the ISO 8601 format (YYYY-MM-DD)
-     * @param adults  the date of check out using the ISO 8601 format (YYYY-MM-DD)
+     * @param hotelId  the id of the hotel to retrieve availability.
+     * @param adults   the number of adults in the room
+     * @param children the number of children in the room
+     * @param infant   the number of children in the room
+     * @param checkIn  the date of check in using the ISO 8601 format (YYYY-MM-DD)
+     * @param checkOut the date of check out using the ISO 8601 format (YYYY-MM-DD)
      * @return the {@link Response} with status {@code 200 (OK)} and with body the hotel, or with status {@code 404 (Not Found)}.
      */
     // TODO Create Available Hotel Response according to Docs.
-    @GetMapping("/{hotelId}/availability")
-    Response<AvailableHotelResponse> findAvailability(@RequestParam("adults") Integer adults,
-                                                      @RequestParam("check_in") String checkIn,
-                                                      @RequestParam("check_out") String checkOut,
-                                                      @Valid @PathVariable String hotelId);
+    @GetMapping
+    Response<AvailableHotelResponse> findAvailability(
+            @RequestParam("adults") Integer adults,
+            @RequestParam("children") Integer children,
+            @RequestParam("infant") Integer infant,
+            @RequestParam("check_in") String checkIn,
+            @RequestParam("check_out") String checkOut,
+            @Valid @PathVariable Long hotelId
+    );
 
     /**
      * {@code GET} : Get a list of hotels for a certain city-date-occupancy combination.
      *
-     * @param hotelId the id of the hotel to retrieve availability.
-     * @param city    the city to search in (e.g. London)
-     * @param adults  the number of adults in the room
-     * @param adults  the number of children in the room
-     * @param adults  the date of check in using the ISO 8601 format (YYYY-MM-DD)
-     * @param adults  the date of check out using the ISO 8601 format (YYYY-MM-DD)
+     * @param hotelId  the id of the hotel to retrieve availability.
+     * @param city     the city to search in (e.g. London)
+     * @param adults   the number of adults in the room
+     * @param children the number of children in the room
+     * @param infant   the number of children in the room
+     * @param checkIn  the date of check in using the ISO 8601 format (YYYY-MM-DD)
+     * @param checkOut the date of check out using the ISO 8601 format (YYYY-MM-DD)
      * @return the {@link Response} with status {@code 200 (OK)} and with body the hotel, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{hotelId}/availability")
-    Response<HotelAvailabilityResponse> getHotelAvailability(@RequestParam("city") String city,
-                                                             @RequestParam("adults") Integer adults,
-                                                             @RequestParam("check_in") String checkIn,
-                                                             @RequestParam("check_out") String checkOut,
-                                                             @Valid @PathVariable String hotelId);
+    Response<HotelAvailabilityResponse> getHotelAvailability(
+            @RequestParam("city") String city,
+            @RequestParam("adults") Integer adults,
+            @RequestParam("children") Integer children,
+            @RequestParam("infant") Integer infant,
+            @RequestParam("check_in") String checkIn,
+            @RequestParam("check_out") String checkOut,
+            @Valid @PathVariable Long hotelId
+    );
 }

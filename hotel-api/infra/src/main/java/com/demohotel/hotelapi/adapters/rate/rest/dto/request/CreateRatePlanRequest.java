@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class CreateRatePlanRequest {
 
     @JsonProperty("hotel_id")
-    public String hotelId;
+    public Long hotelId;
     @JsonProperty("room_type_id")
-    public String roomTypeId;
+    public Long roomTypeId;
     @JsonProperty("code")
     public String code;
     @JsonProperty("name")
@@ -26,7 +26,6 @@ public class CreateRatePlanRequest {
     @JsonProperty("amount")
     public String amount;
 
-
     public CreateRate toModel() {
         return CreateRate.builder()
                 .hotelId(hotelId)
@@ -35,5 +34,4 @@ public class CreateRatePlanRequest {
                 .amount(amount)
                 .build();
     }
-
 }

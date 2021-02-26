@@ -2,7 +2,7 @@ package com.demohotel.hotelapi.adapters.room.jpa.entity;
 
 import com.demohotel.hotelapi.occupancy.model.Occupancy;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -15,6 +15,9 @@ import java.time.LocalDate;
  * A OccupancyEntity.
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "occupancy")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -34,7 +37,7 @@ public class OccupancyEntity implements Serializable {
 
     @Size(min = 3, max = 128)
     @Column(name = "reservation_id", length = 128)
-    private String reservationId;
+    private Long reservationId;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "occupancies", allowSetters = true)

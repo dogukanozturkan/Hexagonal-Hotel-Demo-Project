@@ -2,6 +2,12 @@ package com.demohotel.hotelapi.adapters.room.jpa;
 
 import com.demohotel.hotelapi.adapters.room.jpa.entity.RoomEntity;
 import com.demohotel.hotelapi.adapters.room.jpa.repository.RoomJpaRepository;
+import com.demohotel.hotelapi.occupancy.command.CreateOccupancy;
+import com.demohotel.hotelapi.occupancy.command.FindOccupancy;
+import com.demohotel.hotelapi.occupancy.command.RemoveOccupancy;
+import com.demohotel.hotelapi.occupancy.command.UpdateOccupancy;
+import com.demohotel.hotelapi.occupancy.model.Occupancy;
+import com.demohotel.hotelapi.occupancy.port.OccupancyPort;
 import com.demohotel.hotelapi.room.command.CreateRoom;
 import com.demohotel.hotelapi.room.command.FindRoom;
 import com.demohotel.hotelapi.room.command.RemoveRoom;
@@ -16,7 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class RoomAdapter implements RoomPort {
+public class RoomAdapter implements RoomPort, OccupancyPort {
 
     private final RoomJpaRepository roomJpaRepository;
 
@@ -37,6 +43,26 @@ public class RoomAdapter implements RoomPort {
 
     @Override
     public Room find(FindRoom findRoom) {
+        return null;
+    }
+
+    @Override
+    public Long create(CreateOccupancy createOccupancy) {
+        return null;
+    }
+
+    @Override
+    public Long update(UpdateOccupancy createOccupancy) {
+        return null;
+    }
+
+    @Override
+    public Long remove(RemoveOccupancy createOccupancy) {
+        return null;
+    }
+
+    @Override
+    public Occupancy find(FindOccupancy createOccupancy) {
         return null;
     }
 }

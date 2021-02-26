@@ -24,5 +24,4 @@ public class TranslationDto {
     public String name;
     @JsonProperty("description")
     public String description;
-
 }

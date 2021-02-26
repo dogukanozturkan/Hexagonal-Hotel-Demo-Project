@@ -21,5 +21,4 @@ public class FacilityDto {
     public String category;
     @JsonProperty("name")
     public String name;
-
 }

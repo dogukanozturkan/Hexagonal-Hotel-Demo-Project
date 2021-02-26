@@ -5,8 +5,7 @@ import com.demohotel.hotelapi.adapters.room.jpa.entity.RoomEntity;
 import com.demohotel.hotelapi.type.command.CreateRoomType;
 import com.demohotel.hotelapi.type.command.UpdateRoomType;
 import com.demohotel.hotelapi.type.model.RoomType;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -21,6 +20,8 @@ import java.util.List;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "room_type")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -65,7 +66,7 @@ public class RoomTypeEntity implements Serializable {
     @Column(name = "infant")
     private Integer infant;
 
-    @Column(name = "infant")
+    @Column(name = "bed")
     private Integer bed;
 
     @Column(name = "hotel_id")

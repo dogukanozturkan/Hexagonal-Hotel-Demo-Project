@@ -2,7 +2,7 @@ package com.demohotel.hotelapi.adapters.room.jpa.entity;
 
 import com.demohotel.hotelapi.image.model.Image;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -16,6 +16,9 @@ import java.io.Serializable;
  * A RoomImageEntity.
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
 @Table(name = "room_image")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

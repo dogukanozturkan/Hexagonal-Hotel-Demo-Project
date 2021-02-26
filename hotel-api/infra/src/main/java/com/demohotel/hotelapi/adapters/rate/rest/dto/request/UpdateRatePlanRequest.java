@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class UpdateRatePlanRequest {
 
     @JsonProperty("rate_id")
-    public String rateId;
+    public Long rateId;
     @JsonProperty("hotel_id")
-    public String hotelId;
+    public Long hotelId;
     @JsonProperty("room_type_id")
-    public String roomTypeId;
+    public Long roomTypeId;
     @JsonProperty("code")
     public String code;
     @JsonProperty("name")
@@ -30,12 +30,11 @@ public class UpdateRatePlanRequest {
 
     public UpdateRate toModel() {
         return UpdateRate.builder()
-                .id(Long.getLong(rateId))
+                .id(rateId)
                 .hotelId(hotelId)
                 .roomTypeId(roomTypeId)
                 .name(name)
                 .amount(amount)
                 .build();
     }
-
 }

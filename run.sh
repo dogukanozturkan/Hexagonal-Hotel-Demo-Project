@@ -5,15 +5,15 @@ LOG_FOLDER=~/logs/demohotel-logs
 
 apis="
 ,gateway:8080,
-,bus:8081,
-,discovery:8082,
-,hotel-api:8090,
-,reservation-api:8091,
+,bus:8091,
+,discovery:8761,
+,hotel-api:8093,
+,reservation-api:8094,
 "
 
 dbs="
 ,hotel-api:hotel-db,
-,reservation-api:booking-db,
+,reservation-api:reservation-db,
 "
 
 ################################

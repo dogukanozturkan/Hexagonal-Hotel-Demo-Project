@@ -27,6 +27,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-activemq")
     compile("org.apache.activemq:activemq-broker")
     compile("com.fasterxml.jackson.core:jackson-databind")
-    // https://mvnrepository.com/artifact/org.springframework/spring-jms
     implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }

@@ -20,18 +20,18 @@ public class HotelAvailabilityResponse {
 
     @JsonProperty("availability")
     private List<AvailabilityDto> availability;
-
     @JsonProperty("hotel")
     private HotelEntity hotel;
-
     @JsonProperty("rate_plans")
     private List<RateEntity> ratePlans;
-
     @JsonProperty("rooms")
     private List<RoomEntity> rooms;
 
-    public static HotelAvailabilityResponse fromModel(List<AvailabilityDto> availability, HotelEntity hotel,
-                                                      List<RateEntity> ratePlans, List<RoomEntity> rooms) {
+    public static HotelAvailabilityResponse fromModel(
+            List<AvailabilityDto> availability,
+            HotelEntity hotel,
+            List<RateEntity> ratePlans,
+            List<RoomEntity> rooms) {
         return HotelAvailabilityResponse.builder()
                 .availability(availability)
                 .hotel(hotel)

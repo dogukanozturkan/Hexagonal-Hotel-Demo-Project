@@ -21,12 +21,12 @@ public class HotelJpaAdapter implements HotelPort {
     private final HotelJpaRepository hotelJpaRepository;
 
     @Override
-    public String create(CreateHotel createHotel) {
-        return hotelJpaRepository.save(HotelEntity.fromModel(createHotel)).getId().toString();
+    public Long create(CreateHotel createHotel) {
+        return hotelJpaRepository.save(HotelEntity.fromModel(createHotel)).getId();
     }
 
     @Override
-    public String update(UpdateHotel updateHotel) {
+    public Long update(UpdateHotel updateHotel) {
         return hotelJpaRepository.findById(updateHotel.getId()).map(hotelEntity -> {
             hotelEntity.setName(updateHotel.getName());
             hotelEntity.setAddressLine1(updateHotel.getAddressLine1());
@@ -42,7 +42,7 @@ public class HotelJpaAdapter implements HotelPort {
 
             hotelJpaRepository.save(hotelEntity);
             return hotelEntity.getId();
-        }).get().toString();
+        }).get();
     }
 
     @Override
@@ -51,9 +51,9 @@ public class HotelJpaAdapter implements HotelPort {
     }
 
     @Override
-    public String close(CloseHotel closeHotel) {
+    public Long close(CloseHotel closeHotel) {
         hotelJpaRepository.deleteById(closeHotel.getId());
-        return null;
+        return closeHotel.getId();
     }
 
 

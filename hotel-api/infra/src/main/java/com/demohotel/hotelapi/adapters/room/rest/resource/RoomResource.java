@@ -7,6 +7,7 @@ import com.demohotel.hotelapi.adapters.room.rest.dto.response.GetRoomDetailsResp
 import com.demohotel.hotelapi.adapters.room.rest.dto.response.RoomResponse;
 import com.demohotel.hotelapi.common.rest.BaseController;
 import com.demohotel.hotelapi.common.rest.Response;
+import com.demohotel.hotelapi.occupancy.OccupancyFacade;
 import com.demohotel.hotelapi.room.RoomFacade;
 import com.demohotel.hotelapi.room.command.FindRoom;
 import com.demohotel.hotelapi.room.command.RemoveRoom;
@@ -25,6 +26,7 @@ import java.net.URISyntaxException;
 public class RoomResource extends BaseController implements RoomController {
 
     private final RoomFacade roomFacade;
+    private final OccupancyFacade occupancyFacade;
 
     @Override
     public Response<RoomResponse> addRoom(Long hotelId, @Valid CreateRoomRequest createRoomRequest) throws URISyntaxException {

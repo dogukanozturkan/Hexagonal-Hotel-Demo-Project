@@ -21,17 +21,17 @@ public class RateAdapter implements RatePort {
     private final RateJpaRepository rateJpaRepository;
 
     @Override
-    public String create(CreateRate createRate) {
+    public Long create(CreateRate createRate) {
         return null;
     }
 
     @Override
-    public String update(UpdateRate updateRate) {
+    public Long update(UpdateRate updateRate) {
         return null;
     }
 
     @Override
-    public String remove(RemoveRate removeRate) {
+    public Long remove(RemoveRate removeRate) {
         return null;
     }
 

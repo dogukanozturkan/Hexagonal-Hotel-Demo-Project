@@ -1,6 +1,8 @@
-# Hexagonal-Hotel-Demo-Project
+# Hexagonal-Microservice-Hotel-Demo-Project
 
-Modular DDD Hotel Example
+Modular Microservice Hotel Example
+
+(Ps: project still have missing implementations)
 
 ### Technologies Used
 
@@ -15,6 +17,8 @@ for the demo application;
 * Mysql
 * RabbitMQ
 * Dockerized Integration Tests
+* Eureka
+* Zuul
 * Consumer Driven Contract Testing
 
 ### Usage

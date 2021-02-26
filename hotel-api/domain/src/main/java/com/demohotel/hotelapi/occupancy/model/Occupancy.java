@@ -1,7 +1,5 @@
 package com.demohotel.hotelapi.occupancy.model;
 
-import com.demohotel.hotelapi.hotel.model.Hotel;
-import com.demohotel.hotelapi.room.model.Room;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,10 +9,9 @@ import java.time.LocalDate;
 @Builder
 public class Occupancy {
 
-    private String id;
-    private Hotel hotel;
-    private Room room;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Long id;
+    private Long roomId;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private String reservationId;
 }

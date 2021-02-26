@@ -1,7 +1,7 @@
-package com.demohotel.hotelapi.adapters.hotel.jpa.entity;
+package com.demohotel.hotelapi.adapters.hotel.jpa.entityold;
 
 import com.demohotel.hotelapi.common.entity.AbstractEntity;
-import com.demohotel.hotelapi.room.model.RoomType;
+import com.demohotel.hotelapi.type.model.RoomType;
 import lombok.*;
 import org.hibernate.annotations.Where;
 

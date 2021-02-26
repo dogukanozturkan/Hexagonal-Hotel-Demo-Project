@@ -1,7 +1,6 @@
 package com.demohotel.hotelapi.adapters.hotel.rest.dto.response;
 
 import com.demohotel.hotelapi.adapters.hotel.jpa.entity.HotelEntity;
-
 import com.demohotel.hotelapi.adapters.hotel.rest.dto.AvailabilityDto;
 import com.demohotel.hotelapi.adapters.rate.jpa.entity.RateEntity;
 import com.demohotel.hotelapi.adapters.room.jpa.entity.RoomEntity;

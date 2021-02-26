@@ -29,8 +29,8 @@ public class CreateHotelRequest {
     public String addressLine1;
     @JsonProperty("address_line_2")
     public String addressLine2;
-    @JsonProperty("postcode")
-    public String postcode;
+    @JsonProperty("post_code")
+    public String postCode;
     @JsonProperty("city")
     public String city;
     @JsonProperty("country")
@@ -60,7 +60,7 @@ public class CreateHotelRequest {
                 .addressLine2(addressLine2)
                 .latitude(getLocation().latitude)
                 .longitude(getLocation().longitude)
-                .postCode(postcode)
+                .postCode(postCode)
                 .city(city)
                 .country(country)
                 .phoneNumber(phoneNumber)

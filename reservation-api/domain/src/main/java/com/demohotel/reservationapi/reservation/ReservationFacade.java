@@ -21,10 +21,6 @@ public class ReservationFacade {
         return reservationPort.create(createReservation);
     }
 
-    public String update(UpdateReservation updateReservation) {
-        return reservationPort.update(updateReservation);
-    }
-
     public String updateTravelDates(UpdateTravelDates updateTravelDates) {
         return reservationPort.updateTravelDates(updateTravelDates);
     }

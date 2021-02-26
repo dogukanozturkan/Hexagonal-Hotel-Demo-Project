@@ -1,6 +1,9 @@
 package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.demohotel.reservationapi.reservation.model.vo.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -14,7 +17,9 @@ import java.time.LocalDate;
 /**
  * A CustomerEntity.
  */
-@Entity
+@Data
+@Builder
+@Entity(name = "customer")
 @Table(name = "customer")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CustomerEntity implements Serializable {
@@ -39,11 +44,10 @@ public class CustomerEntity implements Serializable {
     @Column(name = "title", length = 128, nullable = true)
     private String title;
 
-    @Size(min = 1, max = 128)
     @Column(name = "birth_date", length = 128, nullable = true)
     private LocalDate birthDate;
 
-    @Column(name = "passport_no")
+    @Column(name = "passport_no", unique = true)
     private String passportNo;
 
     @NotNull
@@ -61,164 +65,22 @@ public class CustomerEntity implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToOne(mappedBy = "customer")
-    @JsonIgnore
+    @ManyToOne
+    @JsonIgnoreProperties(value = "customers", allowSetters = true)
     private ReservationEntity reservation;
 
-    public Long getId() {
-        return id;
+    public Customer toModel() {
+        return Customer.builder()
+                .name(name)
+                .lastName(lastName)
+                .title(title)
+                .passportNo(passportNo)
+                .birthDate(birthDate.toString())
+                .country(country)
+                .phoneNumber(phoneNumber)
+                .email(email)
+                .reservation(reservation.toModel())
+                .build();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public CustomerEntity name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public CustomerEntity title(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public CustomerEntity lastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public CustomerEntity birthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-        return this;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassportNo() {
-        return passportNo;
-    }
-
-    public CustomerEntity passportNo(String passportNo) {
-        this.passportNo = passportNo;
-        return this;
-    }
-
-    public void setPassportNo(String passportNo) {
-        this.passportNo = passportNo;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public CustomerEntity country(String country) {
-        this.country = country;
-        return this;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public CustomerEntity phoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public CustomerEntity email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public ReservationEntity getReservation() {
-        return reservation;
-    }
-
-    public CustomerEntity reservation(ReservationEntity reservation) {
-        this.reservation = reservation;
-        return this;
-    }
-
-    public void setReservation(ReservationEntity reservation) {
-        this.reservation = reservation;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof CustomerEntity)) {
-            return false;
-        }
-        return id != null && id.equals(((CustomerEntity) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "CustomerEntity{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", passportNo='" + getPassportNo() + "'" +
-            ", country='" + getCountry() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", email='" + getEmail() + "'" +
-            "}";
-    }
 }

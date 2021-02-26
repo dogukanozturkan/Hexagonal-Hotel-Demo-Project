@@ -1,8 +1,7 @@
 package com.demohotel.hotelapi.room.command;
 
-import com.demohotel.hotelapi.hotel.model.Hotel;
-import com.demohotel.hotelapi.occupancy.model.Occupancy;
-import com.demohotel.hotelapi.type.model.RoomType;
+import com.demohotel.hotelapi.image.model.Image;
+import com.demohotel.hotelapi.translation.model.Translation;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,9 +11,10 @@ import java.util.List;
 @Builder
 public class CreateRoom {
 
-    private Hotel hotel;
-    private RoomType roomType;
+    private String name;
     private String description;
-    private String imageUrl;
-    private List<Occupancy> occupancies;
+    private Long hotelId;
+    private Long roomTypeId;
+    private List<Image> images;
+    private List<Translation> translations;
 }

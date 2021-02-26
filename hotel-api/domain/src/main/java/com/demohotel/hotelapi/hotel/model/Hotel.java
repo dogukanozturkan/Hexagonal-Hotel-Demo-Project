@@ -5,6 +5,7 @@ import com.demohotel.hotelapi.facility.model.Facility;
 import com.demohotel.hotelapi.image.model.Image;
 import com.demohotel.hotelapi.rate.model.Rate;
 import com.demohotel.hotelapi.room.model.Room;
+import com.demohotel.hotelapi.translation.model.Translation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Hotel extends Aggregate {
 
-    private String id;
+    private Long id;
     private String name;
     private String addressLine1;
     private String addressLine2;
@@ -35,6 +36,7 @@ public class Hotel extends Aggregate {
     private String starRating;
     private List<Image> images;
     private List<Facility> facilities;
+    private List<Translation> translations;
     private List<Room> rooms;
     private List<Rate> rate;
 }

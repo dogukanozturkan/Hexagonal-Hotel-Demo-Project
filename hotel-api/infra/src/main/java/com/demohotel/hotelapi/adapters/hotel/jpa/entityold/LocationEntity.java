@@ -1,4 +1,4 @@
-package com.demohotel.hotelapi.adapters.hotel.jpa.entity;
+package com.demohotel.hotelapi.adapters.hotel.jpa.entityold;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

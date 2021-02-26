@@ -1,4 +1,5 @@
-package com.demohotel.hotelapi.adapters.hotel.jpa.entity;
+package com.demohotel.hotelapi.adapters.hotel.jpa.entityold;
+
 
 import com.demohotel.hotelapi.common.entity.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,36 +8,26 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-
 @Builder(toBuilder = true)
 @Getter
 @Setter()
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
-@Entity(name = "images")
-@Table(name = "images")
+@Entity(name = "room_images")
+@Table(name = "room_images")
 @Where(clause = "status <> -1")
-public class ImageEntity extends AbstractEntity {
-
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RoomImageEntity extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "hotel_id")
-    private HotelEntity hotel;
+    @JoinColumn(name = "room_id", nullable = false)
+    private RoomEntity room;
 
     @JsonProperty("height")
-    private String height;
-
+    private int height;
     @JsonProperty("width")
-    private String width;
-
+    private int width;
     @JsonProperty("url")
     private String url;
-
     @JsonProperty("tag")
     private String tag;
-
 }

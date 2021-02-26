@@ -1,18 +1,23 @@
 package com.demohotel.reservationapi.adapters.reservation.jpa.entity;
 
+import com.demohotel.reservationapi.reservation.model.Reservation;
+import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A ReservationEntity.
  */
-@Entity
+@Data
+@Builder
+@Entity(name = "reservation")
 @Table(name = "reservation")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ReservationEntity implements Serializable {
@@ -29,11 +34,17 @@ public class ReservationEntity implements Serializable {
     @Column(name = "room_id")
     private String roomId;
 
-    @Column(name = "start_date")
-    private LocalDate startDate;
+    @Column(name = "amount")
+    private String amount;
 
-    @Column(name = "end_date")
-    private LocalDate endDate;
+    @Column(name = "currency")
+    private String currency;
+
+    @Column(name = "check_in")
+    private LocalDate checkIn;
+
+    @Column(name = "check_out")
+    private LocalDate checkOut;
 
     @Column(name = "adult")
     private Integer adult;
@@ -41,165 +52,34 @@ public class ReservationEntity implements Serializable {
     @Column(name = "children")
     private Integer children;
 
-    @OneToOne
+    @Column(name = "infant")
+    private Integer infant;
+
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(unique = true)
     private CustomerEntity customer;
 
-    @OneToMany(mappedBy = "reservation")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<TravellerEntity> travellers = new HashSet<>();
+    @OneToMany(
+            mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<GuestEntity> guests;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getHotelId() {
-        return hotelId;
-    }
-
-    public ReservationEntity hotelId(String hotelId) {
-        this.hotelId = hotelId;
-        return this;
-    }
-
-    public void setHotelId(String hotelId) {
-        this.hotelId = hotelId;
-    }
-
-    public String getRoomId() {
-        return roomId;
-    }
-
-    public ReservationEntity roomId(String roomId) {
-        this.roomId = roomId;
-        return this;
-    }
-
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public ReservationEntity startDate(LocalDate startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public ReservationEntity endDate(LocalDate endDate) {
-        this.endDate = endDate;
-        return this;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public Integer getAdult() {
-        return adult;
-    }
-
-    public ReservationEntity adult(Integer adult) {
-        this.adult = adult;
-        return this;
-    }
-
-    public void setAdult(Integer adult) {
-        this.adult = adult;
-    }
-
-    public Integer getChildren() {
-        return children;
-    }
-
-    public ReservationEntity children(Integer children) {
-        this.children = children;
-        return this;
-    }
-
-    public void setChildren(Integer children) {
-        this.children = children;
-    }
-
-    public CustomerEntity getCustomer() {
-        return customer;
-    }
-
-    public ReservationEntity customer(CustomerEntity customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(CustomerEntity customer) {
-        this.customer = customer;
-    }
-
-    public Set<TravellerEntity> getTravellers() {
-        return travellers;
-    }
-
-    public ReservationEntity travellers(Set<TravellerEntity> travellers) {
-        this.travellers = travellers;
-        return this;
-    }
-
-    public ReservationEntity addTraveller(TravellerEntity traveller) {
-        this.travellers.add(traveller);
-        traveller.setReservation(this);
-        return this;
-    }
-
-    public ReservationEntity removeTraveller(TravellerEntity traveller) {
-        this.travellers.remove(traveller);
-        traveller.setReservation(null);
-        return this;
-    }
-
-    public void setTravellers(Set<TravellerEntity> travellers) {
-        this.travellers = travellers;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof ReservationEntity)) {
-            return false;
-        }
-        return id != null && id.equals(((ReservationEntity) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "ReservationEntity{" +
-            "id=" + getId() +
-            ", hotelId='" + getHotelId() + "'" +
-            ", roomId='" + getRoomId() + "'" +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
-            ", adult=" + getAdult() +
-            ", children=" + getChildren() +
-            "}";
+    public Reservation toModel() {
+        return Reservation.builder()
+                .id(id.toString())
+                .hotelId(hotelId)
+                .roomId(roomId)
+                .amount(amount)
+                .currency(currency)
+                .adult(adult)
+                .children(children)
+                .infant(infant)
+                .checkIn(checkIn)
+                .checkOut(checkOut)
+                .customer(customer.toModel())
+                .guests(guests.stream().map(GuestEntity::toModel).collect(Collectors.toList()))
+                .build();
     }
 }

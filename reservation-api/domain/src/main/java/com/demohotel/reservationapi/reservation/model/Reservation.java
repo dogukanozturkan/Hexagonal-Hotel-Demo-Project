@@ -1,7 +1,7 @@
 package com.demohotel.reservationapi.reservation.model;
 
 import com.demohotel.reservationapi.reservation.model.vo.Customer;
-import com.demohotel.reservationapi.reservation.model.vo.Traveller;
+import com.demohotel.reservationapi.reservation.model.vo.Guest;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,9 +15,14 @@ public class Reservation {
     private String id;
     private String hotelId;
     private String roomId;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String currency;
+    private String amount;
+    private Integer adult;
+    private Integer children;
+    private Integer infant;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private Customer customer;
-    private List<Traveller> travellers;
+    private List<Guest> guests;
 
 }

@@ -34,7 +34,7 @@ public class AddGuestRequest {
     @JsonProperty("email")
     private String email;
 
-    public AddGuest toModel() {
+    public AddGuest toModel(String reservationID) {
         return AddGuest.builder()
                 .name(name)
                 .lastName(lastName)

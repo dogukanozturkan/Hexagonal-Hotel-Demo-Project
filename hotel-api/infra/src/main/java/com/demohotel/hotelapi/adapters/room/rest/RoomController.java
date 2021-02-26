@@ -3,6 +3,7 @@ package com.demohotel.hotelapi.adapters.room.rest;
 import com.demohotel.hotelapi.adapters.room.jpa.entity.RoomEntity;
 import com.demohotel.hotelapi.adapters.room.rest.dto.request.CreateRoomRequest;
 import com.demohotel.hotelapi.adapters.room.rest.dto.request.UpdateRoomRequest;
+import com.demohotel.hotelapi.adapters.room.rest.dto.response.GetRoomDetailsResponse;
 import com.demohotel.hotelapi.adapters.room.rest.dto.response.RoomResponse;
 import com.demohotel.hotelapi.common.rest.Response;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public interface RoomController {
      */
     @PostMapping("/{hotelId}/rooms")
     @ResponseStatus(HttpStatus.CREATED)
-    Response<RoomResponse> addRoom(@PathVariable String hotelId,
+    Response<RoomResponse> addRoom(@PathVariable Long hotelId,
                                    @Valid @RequestBody CreateRoomRequest createRoomRequest) throws URISyntaxException;
 
 
@@ -43,7 +44,7 @@ public interface RoomController {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{hotelId}/rooms/{roomId}")
-    Response<RoomResponse> updateRoom(@PathVariable String hotelId, @PathVariable String roomId,
+    Response<RoomResponse> updateRoom(@PathVariable Long hotelId, @PathVariable Long roomId,
                                       @Valid @RequestBody UpdateRoomRequest updateRoomRequest) throws URISyntaxException;
 
 
@@ -55,7 +56,7 @@ public interface RoomController {
      * @return the {@link Response} with status {@code 200 (OK)} and with body the room, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{hotelId}/rooms/{roomId}")
-    Response<RoomResponse> getRoom(@PathVariable String hotelId, @PathVariable String roomId);
+    Response<GetRoomDetailsResponse> getRoom(@PathVariable Long hotelId, @PathVariable Long roomId);
 
 
     /**
@@ -66,5 +67,5 @@ public interface RoomController {
      * @return the {@link Response} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/{hotelId}/rooms/{roomId}")
-    Response<RoomResponse> removeRoom(@PathVariable String hotelId, @PathVariable String roomId);
+    Response<RoomResponse> removeRoom(@PathVariable Long hotelId, @PathVariable Long roomId);
 }

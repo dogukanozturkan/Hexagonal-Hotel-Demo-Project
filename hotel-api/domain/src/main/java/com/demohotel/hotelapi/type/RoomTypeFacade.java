@@ -20,15 +20,15 @@ public class RoomTypeFacade {
 
     private final RoomTypePort roomTypePort;
 
-    public String create(CreateRoomType createRoomType) {
+    public Long create(CreateRoomType createRoomType) {
         return roomTypePort.create(createRoomType);
     }
 
-    public String update(UpdateRoomType updateRoomType) {
+    public Long update(UpdateRoomType updateRoomType) {
         return roomTypePort.update(updateRoomType);
     }
 
-    public String remove(RemoveRoomType removeRoomType) {
+    public Long remove(RemoveRoomType removeRoomType) {
         return roomTypePort.remove(removeRoomType);
     }
 

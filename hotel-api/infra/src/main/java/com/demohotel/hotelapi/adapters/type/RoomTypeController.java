@@ -3,6 +3,7 @@ package com.demohotel.hotelapi.adapters.type;
 import com.demohotel.hotelapi.adapters.type.jpa.entity.RoomTypeEntity;
 import com.demohotel.hotelapi.adapters.type.rest.dto.request.CreateRoomTypeRequest;
 import com.demohotel.hotelapi.adapters.type.rest.dto.request.UpdateRoomTypeRequest;
+import com.demohotel.hotelapi.adapters.type.rest.dto.response.GetRoomTypeDetailsResponse;
 import com.demohotel.hotelapi.adapters.type.rest.dto.response.RoomTypeResponse;
 import com.demohotel.hotelapi.common.rest.Response;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public interface RoomTypeController {
      */
     @PostMapping("/{hotelId}/room-types")
     @ResponseStatus(HttpStatus.CREATED)
-    Response<RoomTypeResponse> addRoomType(@PathVariable String hotelId,
+    Response<RoomTypeResponse> addRoomType(@PathVariable Long hotelId,
                                            @Valid @RequestBody CreateRoomTypeRequest createRoomTypeRequest) throws URISyntaxException;
 
 
@@ -42,7 +43,7 @@ public interface RoomTypeController {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{hotelId}/room-types/{roomTypeId}")
-    Response<RoomTypeResponse> updateRoomType(@PathVariable String hotelId, @PathVariable String roomTypeId,
+    Response<RoomTypeResponse> updateRoomType(@PathVariable Long hotelId, @PathVariable Long roomTypeId,
                                               @Valid @RequestBody UpdateRoomTypeRequest updateRoomTypeRequest) throws URISyntaxException;
 
 
@@ -54,7 +55,7 @@ public interface RoomTypeController {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the roomType, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{hotelId}/room-types/{roomTypeId}")
-    Response<RoomTypeResponse> getRoomType(@PathVariable String hotelId, @PathVariable String roomTypeId);
+    Response<GetRoomTypeDetailsResponse> getRoomType(@PathVariable Long hotelId, @PathVariable Long roomTypeId);
 
     /**
      * {@code DELETE  /:id/room-types/:room_type_id} : delete the "id" roomType.
@@ -64,5 +65,5 @@ public interface RoomTypeController {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/{hotelId}/room-types/{roomTypeId}")
-    Response<RoomTypeResponse> removeRoomType(@PathVariable String hotelId, @PathVariable String roomTypeId);
+    Response<RoomTypeResponse> removeRoomType(@PathVariable Long hotelId, @PathVariable Long roomTypeId);
 }

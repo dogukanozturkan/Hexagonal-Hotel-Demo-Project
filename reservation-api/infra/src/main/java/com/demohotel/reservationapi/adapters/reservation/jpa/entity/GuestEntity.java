@@ -20,7 +20,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity
-@Table(name = "guest")
+@Table(
+        name = "guest",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "guest_passport_no_unique", columnNames = "passport_no")
+        }
+)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class GuestEntity implements Serializable {
 
@@ -41,13 +46,13 @@ public class GuestEntity implements Serializable {
     private String lastName;
 
     @Size(min = 1, max = 128)
-    @Column(name = "title", length = 128, nullable = true)
+    @Column(name = "title", length = 128)
     private String title;
 
-    @Column(name = "birth_date", length = 128, nullable = true)
+    @Column(name = "birth_date", length = 128)
     private LocalDate birthDate;
 
-    @Column(name = "passport_no")
+    @Column(name = "passport_no", nullable = false)
     private String passportNo;
 
     @NotNull

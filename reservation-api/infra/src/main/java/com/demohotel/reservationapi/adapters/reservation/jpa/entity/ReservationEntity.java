@@ -32,37 +32,37 @@ public class ReservationEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "hotel_id")
+    @Column(name = "hotel_id", nullable = false)
     private Long hotelId;
 
-    @Column(name = "room_id")
+    @Column(name = "room_id", nullable = false)
     private Long roomId;
 
-    @Column(name = "rate_id")
+    @Column(name = "rate_id", nullable = false)
     private Long rateId;
 
-    @Column(name = "room_type_id")
+    @Column(name = "room_type_id", nullable = false)
     private Long roomTypeId;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private String amount;
 
-    @Column(name = "currency")
+    @Column(name = "currency", nullable = false)
     private String currency;
 
-    @Column(name = "check_in")
+    @Column(name = "check_in", nullable = false)
     private LocalDate checkIn;
 
-    @Column(name = "check_out")
+    @Column(name = "check_out", nullable = false)
     private LocalDate checkOut;
 
-    @Column(name = "adult")
+    @Column(name = "adult", nullable = false)
     private Integer adult;
 
-    @Column(name = "children")
+    @Column(name = "children", nullable = false)
     private Integer children;
 
-    @Column(name = "infant")
+    @Column(name = "infant", nullable = false)
     private Integer infant;
 
     @OneToOne(cascade = {CascadeType.ALL})

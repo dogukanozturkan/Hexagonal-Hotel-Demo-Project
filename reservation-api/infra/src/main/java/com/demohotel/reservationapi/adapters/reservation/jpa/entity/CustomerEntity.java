@@ -21,7 +21,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.MODULE)
 @Entity(name = "customer")
-@Table(name = "customer")
+@Table(
+        name = "customer",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "customer_email_unique", columnNames = "email"),
+                @UniqueConstraint(name = "customer_passport_no_unique", columnNames = "passport_no")
+        }
+)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CustomerEntity implements Serializable {
 
@@ -48,7 +54,7 @@ public class CustomerEntity implements Serializable {
     @Column(name = "birth_date", length = 128)
     private LocalDate birthDate;
 
-    @Column(name = "passport_no", unique = true)
+    @Column(name = "passport_no")
     private String passportNo;
 
     @NotNull
